@@ -19,7 +19,8 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: bhavdeep_sethi@yahoo.in
+gravatar: bhavdeep_sethi@yahoo.in
 
 # ----------------------- #
 #    Jekyll & Plugins     #
