@@ -12,6 +12,7 @@ categories: [tech, dropwizard, java, github]
 <p>You can serve static content for your Dropwizard application efficiently in two ways: <span id="more-218"></span><br />
 1) Using nginx<br />
 2) Using a custom Asset Bundler</p>
+<!--more-->
 <p>1) Using nginx:<br />
 You can configure nginx so that it serves all the static content, while unrecognized requests can be forwarded to your application server.<br />
 Here is a sample config:</p>

@@ -8,6 +8,7 @@ categories: [blog, tech, slashn, flipkart]
 <p>Mark your calendar, folks. Come March 7, 2014, Flipkart's technology conference is back and it's bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we've got some amazing talks lined up. </p>
 <p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
 <p>To make things convenient slash n app is now available in both Android and iOS stores:<br />
+<!--more-->
 <a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
 <p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
 <p>Also, you can go to this <a href="http://slashn.flipkart.net/getapp" title="slash n" target="_blank">link</a> on your smart phone to get the app directly.</p>
