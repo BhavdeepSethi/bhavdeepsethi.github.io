@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tech | Deep Musings]]></title>
   <link href="http://bhavdeepsethi.github.io/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2014-12-11T13:44:51-05:00</updated>
+  <updated>2014-12-11T15:31:41-05:00</updated>
   <id>http://bhavdeepsethi.github.io/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MariaDB seconds behind issue fixed]]></title>
+    <link href="http://bhavdeepsethi.github.io/blog/2014/03/10/mariadb-seconds-behind-issue-fixed/"/>
+    <updated>2014-03-10T16:28:38-04:00</updated>
+    <id>http://bhavdeepsethi.github.io/blog/2014/03/10/mariadb-seconds-behind-issue-fixed</id>
+    <content type="html"><![CDATA[<p>We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug:
+We had setup maria 10.0.4 for multisource replication. It was replicating from a Percona 5.5 master. When we started replication, Maria was a day behind its master. It was working fine, but we noticed this phenomenon:
+When we execute <code language="sql">show all slaves status</code> consecutively, the &lsquo;seconds_behind_master&rsquo; flips from 0 to XXX and XXX to 0.
+Note: XXX is some positive number.</p>
+
+<p>Reference: <a href="https://mariadb.atlassian.net/browse/MDEV-5114">https://mariadb.atlassian.net/browse/MDEV-5114</a></p>
+
+<p>The fix is deployed in MariaDB 10.0.10.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Slash n is back!]]></title>
