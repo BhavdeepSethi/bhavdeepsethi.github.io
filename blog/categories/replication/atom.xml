@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: replication | Deep Musings]]></title>
+  <link href="http://bhavdeepsethi.github.io/blog/categories/replication/atom.xml" rel="self"/>
+  <link href="http://bhavdeepsethi.github.io/"/>
+  <updated>2014-12-10T19:26:05-05:00</updated>
+  <id>http://bhavdeepsethi.github.io/</id>
+  <author>
+    <name><![CDATA[Bhavdeep Sethi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL Partial Replication]]></title>
+    <link href="http://bhavdeepsethi.github.io/blog/2014/02/08/mysql-partial-replication/"/>
+    <updated>2014-02-08T18:36:09-05:00</updated>
+    <id>http://bhavdeepsethi.github.io/blog/2014/02/08/mysql-partial-replication</id>
+    <content type="html"><![CDATA[<p>A couple of folks have asked me to elaborate more on partial replication.<br />
+What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? </p>
+
+
+<p>Here is a follow up post to answer these and other such questions. </p>
+
+
+<p>-What is Partial Replication?<br />
+Partial replication is when your slave is replicating only certain db or tables from the master. </p>
+
+
+<p>-What is the use of partial replication?<br />
+<!--more-->
+You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you&#8217;re low on space, it makes sense replicating only the desired tables.<br />
+There might be other reasons and this really depends on the application consuming the data.<br />
+For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.<br />
+To solve this problem, we&#8217;re using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting. </p>
+
+
+<p>-How do I do it?<br />
+<span id="more-204"></span><br />
+There are multiple ways to do this. Here is a good post covering some of the ways:<br />
+<a href="http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/" title="Partial Replication" target="_blank">http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/</a></p>
+
+
+<p>- Can you add/remove tables/db to existing replication?<br />
+Yes! Follow the following steps:<br />
+1) Run <code language="sql">stop slave</code> on the slave where you want to add the tables/db. Let&#8217;s call this target slave.<br />
+2) Using method #3 from this post, take the dump of the required data.<br />
+3) Using the replication parameters captured in step 2, use the following command to update the target slave:<br />
+<br />
+<code language="sql">
+START SLAVE UNTIL MASTER_LOG_FILE='&lt;log_file&gt;', MASTER_LOG_POS=&lt;log_position&gt;; 
+</code>
+<br />
+The above command starts replication till the &#8216;log_position&#8217; and then stops the slave itself.<br />
+4) Now, load the dumped data on the target slave.<br />
+5) If you&#8217;re replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave.<br />
+6) Run <code language="sql">start slave</code> on the target slave and watch the new tables getting the new data! :) </p>
+
+
+<p>- Is it safe?<br />
+Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication.<br />
+Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you&#8217;re using statement based replication. </p>
+
+
+<p>- If I am using slave status to find the replication parameters, then which slave parameters should I consider?<br />
+For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave.<br />
+The <code language="sql">show slave status</code> command has three log files and there might be confusion as to which log file to use.<br />
+If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread.<br />
+Mapping this to the &#8220;show slave status&#8221; command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos. </p>
+
+
+<p>Hope this helps! If you have any further questions on MySQL partial replication, do let me know.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql Replication from an existing slave]]></title>
+    <link href="http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
+    <updated>2014-02-01T18:59:25-05:00</updated>
+    <id>http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
+    <content type="html"><![CDATA[<p>So you want to add another slave to an existing mysql replication environment? </p>
+
+
+<p>There are multiple ways to do this. </p>
+
+
+<p><strong>First option, as mentioned in the mysql documentation: </strong></p>
+
+
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto-additionalslaves.html" title="Replication How to add additional slaves" target="_blank">Replication How to add additional slaves</a></p>
+
+
+<p>This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.<br />
+You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.<br />
+Plus, the whole process is not straightforward and really prone to errors. </p>
+
+
+<p><strong>Another option is to use lvm snapshot to take backups: </strong><br />
+<!--more -->
+<span id="more-187"></span><br />
+<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
+
+
+<p>I&#8217;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
+
+
+<p>But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? </p>
+
+
+<p>Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. </p>
+
+
+<p>There is a better way to do this.<br /><br />
+<strong>Using mysqldump (for mysql >= 5.5.3): </strong></p>
+
+
+<p>Let us see the query to dump a single table from a single database:<br /><br />
+<code language="sql"><br />
+mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip > dump_file_name.gz<br />
+</code> <br />
+<br />
+
+Let us go through the options:<br />
+&#8211;single-transaction: This basically starts the dump process under a new transaction without blocking any other applications.</p>
+
+
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_single-transaction" title="mysqldump: single-transaction" target="_blank">mysqldump: single-transaction</a></p>
+
+
+<p>&#8211;flush-logs: Flushes the MySQL server log files before starting the dump. </p>
+
+
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_flush-logs" title="mysqldump: flush-logs" target="_blank">mysqldump: flush-logs</a></p>
+
+
+<p>&#8211;dump-slave: This is the heart of the query. It is used to print the binary log coordinates (file name and position) of the dumped slave&#8217;s master in the dump file.<br />
+&#8211;dump-slave=1 prints the actual change master to statement in the sql dump.<br />
+Changing the value to 2 causes it to print the same but within a comment. Essentially, you can run it at your own convenience.<br />
+If you are replicating from a slave use &#8211;dump-slave. If you are running this query on the master itself, replace this with &#8211;master-data.<br />
+Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_dump-slave " title="mysqldump: dump-slave" target="_blank">mysqldump: dump-slave</a></p>
+
+
+<p>&#8211;max_allowed_packet: The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB </p>
+
+
+<p>gzip: Compress the data while being writhed into a dump file. You will see a good 70%~80% compression rate. This helps a lot when transferring files cross DC.</p>
+
+
+<p>To run this for multiple tables use the &#8211;tables option. If you want to run it for one or more databases, use &#8211;databases option.<br />
+You can use this for full replication as well as long as you&#8217;re using InnoDB tables. </p>
+
+
+<p>Basically you can use any of the <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html" title="mysqldump" target="_blank">mysqldump</a> flags as per your requirement. </p>
+
+]]></content>
+  </entry>
+  
+</feed>

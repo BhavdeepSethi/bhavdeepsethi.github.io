@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: slashn | Deep Musings]]></title>
+  <link href="http://bhavdeepsethi.github.io/blog/categories/slashn/atom.xml" rel="self"/>
+  <link href="http://bhavdeepsethi.github.io/"/>
+  <updated>2014-12-10T19:26:05-05:00</updated>
+  <id>http://bhavdeepsethi.github.io/</id>
+  <author>
+    <name><![CDATA[Bhavdeep Sethi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Slash n is back!]]></title>
+    <link href="http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back/"/>
+    <updated>2014-03-02T19:12:36-05:00</updated>
+    <id>http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back</id>
+    <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
+
+
+<p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
+
+
+<p>To make things convenient slash n app is now available in both Android and iOS stores:<br />
+<a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
+
+
+<p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
+
+
+<p>Also, you can go to this <a href="http://slashn.flipkart.net/getapp" title="slash n" target="_blank">link</a> on your smart phone to get the app directly.</p>
+
+
+<p>For more details, visit <a href="http://slashn.flipkart.net/" title="slash n" target="_blank">slash n</a> website. </p>
+
+
+<p>See you there!</p>
+
+
+<p>P.S.: Watch out for my talk on <strong>Know Your Customer (KYC) ~ Deriving User Insights</strong>. Here is the synopsis of the talk: </p>
+
+
+<p><em>How can we customize every customer engagement through event derivations? How can we ensure every user interaction is relevant and drive loyalty and retention through it? Did you know it also enables finding who is a reseller, who is a Frequent shopper at Flipkart and who needs a mailer to be brought back? How do we improve customer support interaction by knowing who is anxious, who is happy and who is an angry repeat caller. Presenting the &#8220;User Insights Platform&#8221; which enables us to dig into 100s of TB of data at Flipkart to derive insights about the user.</em></p>
+
+]]></content>
+  </entry>
+  
+</feed>
