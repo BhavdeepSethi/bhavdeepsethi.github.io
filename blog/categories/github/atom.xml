@@ -4,7 +4,7 @@
   <title><![CDATA[Category: github | Deep Musings]]></title>
   <link href="http://bhavdeepsethi.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2014-12-10T19:26:05-05:00</updated>
+  <updated>2014-12-10T19:35:05-05:00</updated>
   <id>http://bhavdeepsethi.github.io/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -33,6 +33,9 @@
 <p>You can serve static content for your Dropwizard application efficiently in two ways: <span id="more-218"></span><br />
 1) Using nginx<br />
 2) Using a custom Asset Bundler</p>
+
+
+<!--more-->
 
 
 <p>1) Using nginx:<br />

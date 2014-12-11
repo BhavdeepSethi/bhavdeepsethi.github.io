@@ -36,49 +36,54 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>http://bhavdeepsethi.github.io/blog/2013/08/17/some-inspiring-commencement-speeches/</loc>
+    <lastmod>2013-08-17T20:30:13-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://bhavdeepsethi.github.io/blog/2013/07/25/let-there-be-light/</loc>
     <lastmod>2013-07-25T18:28:54-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/blog/archives/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/blog/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/about/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/precious/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/projects/</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>http://bhavdeepsethi.github.io/indexOld.html</loc>
-    <lastmod>2014-12-10T19:26:05-05:00</lastmod>
+    <lastmod>2014-12-10T19:35:05-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
