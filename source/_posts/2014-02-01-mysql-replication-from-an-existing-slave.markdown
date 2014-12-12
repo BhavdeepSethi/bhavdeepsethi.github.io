@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Mysql Replication from an existing slave"
+title: Mysql Replication from an existing slave
 date: 2014-02-01 18:59:25 -0500
+date_formatted: February 1, 2014
 comments: true
 categories: [tech, mysql, replication]
 ---
@@ -13,10 +14,10 @@ categories: [tech, mysql, replication]
 <p>This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.<br />
 You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.<br />
 Plus, the whole process is not straightforward and really prone to errors. </p>
-<p><strong>Another option is to use lvm snapshot to take backups: </strong><br />
+<p><strong>Another option is to use lvm snapshot to take backups: </strong></p><br />
 <!--more -->
 <span id="more-187"></span><br />
-<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
+<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a>
 <p>I've used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
 <p>But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? </p>
 <p>Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. </p>

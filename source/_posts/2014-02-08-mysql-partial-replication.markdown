@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "MySQL Partial Replication"
+title: MySQL Partial Replication
 date: 2014-02-08 18:36:09 -0500
+date_formatted: February 8, 2014
 comments: true
 categories: [tech,mysql,replication]
 ---
@@ -11,12 +12,12 @@ What is the use of replicating only certain tables? Can you add/remove tables/db
 <p>Here is a follow up post to answer these and other such questions. </p>
 <p>-What is Partial Replication?<br />
 Partial replication is when your slave is replicating only certain db or tables from the master. </p>
-<p>-What is the use of partial replication?<br />
+<p>-What is the use of partial replication? </p><br />
 <!--more-->
 You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you're low on space, it makes sense replicating only the desired tables.<br />
 There might be other reasons and this really depends on the application consuming the data.<br />
 For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.<br />
-To solve this problem, we're using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting. </p>
+To solve this problem, we're using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting.
 <p>-How do I do it?<br />
 <span id="more-204"></span><br />
 There are multiple ways to do this. Here is a good post covering some of the ways:<br />

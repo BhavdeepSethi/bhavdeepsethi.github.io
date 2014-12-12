@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Some Inspiring Commencement Speeches"
+title: Some Inspiring Commencement Speeches
 date: 2013-08-17 19:30:13 -0500
+date_formatted: August 17, 2013
 comments: true
 categories: [musings, commencement]
 ---

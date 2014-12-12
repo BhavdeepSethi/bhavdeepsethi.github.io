@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "MariaDB seconds behind issue fixed"
+title: MariaDB seconds behind issue fixed
 date: 2014-03-10 15:28:38 -0500
+date_formatted: March 10, 2014
 comments: true
 categories: [mysql, mariadb, opensource, tech]
 ---

@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Serving static content with Dropwizard"
+title: Serving static content with Dropwizard
 date: 2014-02-13 19:22:37 -0500
+date_formatted: February 13, 2014
 comments: true
 categories: [tech, dropwizard, java, github]
 ---

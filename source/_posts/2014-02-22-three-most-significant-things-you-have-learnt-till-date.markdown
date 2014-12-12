@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Three most significant things you have learnt till date"
+title: Three most significant things you have learnt till date
 date: 2014-02-22 18:27:28 -0500
+date_formatted: February 22, 2014
 comments: true
 categories: [musings]
 ---
@@ -11,8 +12,8 @@ categories: [musings]
 <p>So, now, I ask you to answer the same question. What are the three most significant things you have learnt till date? Make sure that you don't spend too much time thinking about it. Just list out down the top three things that you can think of. You can then elaborate on why you think you chose these. </p>
 <p>By the way, here were my answers: </p>
 <p><strong>#1 Always listen to your heart. It'll lead you the right way. </strong><br />
-<!--more-->
 <span id="more-263"></span></p>
+<!--more-->
 <p>Post under-graduation, I had offers from Infosys and TCS, two of the biggest IT companies in India. I joined Infosys based on the feedback I got from my seniors. Having excelled in their training program, they decided to place me in a department called LERN. Infosys was entering into the e-learning market, a $50 Billion industry, which is likely to double in size before 2015. They needed sharp folks who could translate technically challenging material into easy to understand workflows. One caveat though, the job did not require any coding, just using some tools. They pick their best programmers and put them in a department which needed zero programming skills. Ironic? Tell me about it. I obviously asked for a department change, but they said it couldn't be done for at least a year. Oh, and Infosys had made us sign a contract that would enforce a monetary fine in case I leave the company before completing a year. They were asking for more money than they had actually paid me till that time. Along with this, the HRs were using lots of legal jargon to make sure I did not leave. I did not know anybody who had left before completing a year, so I didn't know how to proceed ahead.
 </p>
 <p>I knew one thing though. The few months spent there were depressing. The work life was mediocre. It was not challenging enough. It was not something I wanted to do. This in turn was taking a toll on my personal life as well. Misunderstandings, arguments… and the whole nine yards were getting regular with friends. After one of such days, I realized that no amount of money was worth this. I decided I had to leave right then. I didn't know what I was going to do next. I was ready to work for absolutely no salary at all. I just wanted to do some good work. With only the belief in my ability to make /something/ out of this situation, I decided to leave Infosys and join a startup (MIME360). This, obviously did not go down well with friends and family. I was leaving a stable job with a reputed IT giant  to work in a company incubating in college with 6 employees. Startups weren't a big deal in India back then (still aren't, but things are changing fast) so it was difficult to explain to people the rationale behind the move. I stuck to my decision, sorted out my priorities and was ready to face whatever came next. Eventually, Flipkart.com, the biggest eCommerce company in India, acquired MIME360 to build its digital arm. And I've never looked back since. <img src="http://www.deepmusings.com/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />
