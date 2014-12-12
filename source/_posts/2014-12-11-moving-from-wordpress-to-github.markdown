@@ -7,7 +7,7 @@ comments: true
 categories: [blog, github, hackers]
 ---
 <p>
-So...the look feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/
+So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/
 
 <p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I'm getting into the writing mode again and not to mention that a lot has happened in the past six months...so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br />
 
