@@ -13,11 +13,11 @@ So...the look and feel of the blog changed. For the good, I hope! Basically my G
 
 But not anymore! 
 <!--more-->
-I randomly googled "<a href="http://goo.gl/02SPK4">blogging platform for coders</a>". went to the HN link from the result and read about Jekyll+Github. And I can't believe I hadn't heard about this for so long!  I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br />
+I randomly googled "<a href="http://goo.gl/02SPK4">blogging platform for coders</a>", went to the HN link from the result and read about Jekyll+Github. And I can't believe I hadn't heard about this for so long!  I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br />
 
 With Octopress into the picture, you do not even have to bother with the blog structure/theme. It took me about half a day to migrate the entire blog. Or whatever was left of it. 
 
-<p><h3>Why GitHub User Pages are way better than WordPress?</h3> 
+<p><h3>Why GitHub User Pages are way better than WordPress for your blog?</h3> 
 <ul>
 <li>The power of Github! You can add collaborators, markdowns, issue tracking, versioning...do I need to say more? 
 <li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
@@ -27,7 +27,7 @@ With Octopress into the picture, you do not even have to bother with the blog st
 <li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
 </ul>
 <br />
-I can go on and on...I am so glad I moved to this new platform. It feels like home here. :P
+I could go on and on...but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P
 
 <p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" >this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" >This Github Help</a> page will give you steps for setting up a custom domain with your github page. That's it! Seriously. You're done! Hope to see you on this side. 
 
