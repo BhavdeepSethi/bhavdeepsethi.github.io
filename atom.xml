@@ -4,11 +4,11 @@
   <title><![CDATA[Deep Musings]]></title>
   <link href="http://bhavdeepsethi.github.io/atom.xml" rel="self"/>
   <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2014-12-11T15:31:41-05:00</updated>
+  <updated>2014-12-11T20:55:32-05:00</updated>
   <id>http://bhavdeepsethi.github.io/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
-    
+    <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -21,6 +21,8 @@
     <content type="html"><![CDATA[<p>I&#8217;m don&#8217;t know the actual source of this poem so can&#8217;t give proper credit for this. If you know where this verse is from, please reach out to me so I can link the source.  </p>
 
 
+
+
 <p><em><br />
 Before the world validates our identity based on race &amp; creed,<br />
 Before they tell us where we belong &amp; which air we ought to breathe,<br />
@@ -28,11 +30,17 @@ For now, for once, let&#8217;s just live for today!</p>
 
 
 <p>Before life drags us apart and tries molding our fate,<br />
+</p>
+
+
+<p></em></p>
+
 <!--more-->
 
-Before fanaticism conquers love &amp; our credibility is put on stake,<br />
-For now, for once, let&#8217;s just live for today!</p>
 
+<p><em>
+Before fanaticism conquers love &amp; our credibility is put on stake,<br />
+For now, for once, let&rsquo;s just live for today!</p>
 
 <p>Before the night looses its charm &amp; the moon hides &amp; fades,<br />
 Before the first gleam of sunshine makes them discover our shade,<br />
@@ -74,10 +82,15 @@ Note: XXX is some positive number.</p>
 <p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
 
 
-<p>To make things convenient slash n app is now available in both Android and iOS stores:<br />
-<!--more-->
-<a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
+<p>To make things convenient slash n app is now available in both Android and iOS stores:</p>
 
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p><a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
 
 <p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
 
@@ -119,8 +132,10 @@ Note: XXX is some positive number.</p>
 
 
 <p><strong>#1 Always listen to your heart. It&#8217;ll lead you the right way. </strong><br />
-<!--more-->
 <span id="more-263"></span></p>
+
+
+<!--more-->
 
 
 <p>Post under-graduation, I had offers from Infosys and TCS, two of the biggest IT companies in India. I joined Infosys based on the feedback I got from my seniors. Having excelled in their training program, they decided to place me in a department called LERN. Infosys was entering into the e-learning market, a $50 Billion industry, which is likely to double in size before 2015. They needed sharp folks who could translate technically challenging material into easy to understand workflows. One caveat though, the job did not require any coding, just using some tools. They pick their best programmers and put them in a department which needed zero programming skills. Ironic? Tell me about it. I obviously asked for a department change, but they said it couldn&#8217;t be done for at least a year. Oh, and Infosys had made us sign a contract that would enforce a monetary fine in case I leave the company before completing a year. They were asking for more money than they had actually paid me till that time. Along with this, the HRs were using lots of legal jargon to make sure I did not leave. I did not know anybody who had left before completing a year, so I didn&#8217;t know how to proceed ahead.
@@ -280,13 +295,18 @@ What is the use of replicating only certain tables? Can you add/remove tables/db
 Partial replication is when your slave is replicating only certain db or tables from the master. </p>
 
 
-<p>-What is the use of partial replication?<br />
+<p>-What is the use of partial replication? </p>
+
+
+<p><br /></p>
+
 <!--more-->
-You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you&#8217;re low on space, it makes sense replicating only the desired tables.<br />
+
+
+<p>You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you&rsquo;re low on space, it makes sense replicating only the desired tables.<br />
 There might be other reasons and this really depends on the application consuming the data.<br />
 For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.<br />
-To solve this problem, we&#8217;re using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting. </p>
-
+To solve this problem, we&rsquo;re using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting.</p>
 
 <p>-How do I do it?<br />
 <span id="more-204"></span><br />
@@ -349,11 +369,16 @@ You may use stop slave instead of a complete shutdown, but that might not be fea
 Plus, the whole process is not straightforward and really prone to errors. </p>
 
 
-<p><strong>Another option is to use lvm snapshot to take backups: </strong><br />
-<!--more -->
-<span id="more-187"></span><br />
-<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
+<p><strong>Another option is to use lvm snapshot to take backups: </strong></p>
 
+
+<p><br /></p>
+
+<!--more -->
+
+
+<p><span id="more-187"></span><br />
+<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
 
 <p>I&#8217;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
 
@@ -425,11 +450,15 @@ Technology:<br />
 Thanks to last year&#8217;s resolution, I&#8217;ve got into a habit of going through HackerNews everyday. So I&#8217;m decently updated with technology. Intend to continue doing this. </p>
 
 
-<p><b>Write More</b><br />
+<p><b>Write More</b></p>
+
+
+<p><br /></p>
+
 <!--more-->
 
-And this doesn&#8217;t including coding! I did a lot of writing while preparing my SoP for the MS applications and I enjoyed it a lot. And I could see a noticeable difference when I had to fill appraisal forms. In Flipkart, we have a very comprehensive appraisal process. A major part of this process is writing self and peer reviews. My earlier self reviews were generally very terse. Luckily my work spoke for me and I had no issues whatsoever. However, after working on the SoP for 2-3 months, writing the self review was piece of cake this time. Sat down late night and finished the entire review process in 4 hours! That was when I decided I&#8217;m going to write more regularly. It really brings a clarity in thought. While I would love to follow the 1000 words per day formula, I want to keep a realistic target for this. I am keeping a target of 1000 words per week for the initial three months and then will evaluate how to continue going forward. </p>
 
+<p>And this doesn&rsquo;t including coding! I did a lot of writing while preparing my SoP for the MS applications and I enjoyed it a lot. And I could see a noticeable difference when I had to fill appraisal forms. In Flipkart, we have a very comprehensive appraisal process. A major part of this process is writing self and peer reviews. My earlier self reviews were generally very terse. Luckily my work spoke for me and I had no issues whatsoever. However, after working on the SoP for 2-3 months, writing the self review was piece of cake this time. Sat down late night and finished the entire review process in 4 hours! That was when I decided I&rsquo;m going to write more regularly. It really brings a clarity in thought. While I would love to follow the 1000 words per day formula, I want to keep a realistic target for this. I am keeping a target of 1000 words per week for the initial three months and then will evaluate how to continue going forward.</p>
 
 <p><b>Watch More</b><br />
 Videos. I absolutely love the Online Courses (MOOC). From statistics, gamification, entrepreneurship to psychology, I follow a lot of these courses. I don&#8217;t have a target for this because sometimes I end up doing 3-4 of these together but planning to concentrate more on Data Analysis, Big Data and Machine Learning courses this year. </p>
@@ -651,11 +680,15 @@ We are bound to touch other people&#8217;s lives simply by existing. So let ua u
     <content type="html"><![CDATA[<p>Hello Bloggers!</p>
 
 
-<p>Let me start by telling you what took so long for the first post to come up! After registering with GoDaddy for the domain, I&#8217;ve been waiting for my friend Shailesh (An awesome designer btw) to give me a wicked cool custom theme. You don&#8217;t expect me to start with a drab page, right? But alas, here we are. 
+<p>Let me start by telling you what took so long for the first post to come up! After registering with GoDaddy for the domain, I&#8217;ve been waiting for my friend Shailesh (An awesome designer btw) to give me a wicked cool custom theme. You don&#8217;t expect me to start with a drab page, right? But alas, here we are. </p>
+
+
+
 
 <!--more-->
-He got busy with other things and I&#8217;m stuck with some random theme for now. I&#8217;m pretty decent with front-end myself so if this post can&#8217;t prod him enough to give me a theme soon, then I may take a crack at it myself.</p>
 
+
+<p>He got busy with other things and I&rsquo;m stuck with some random theme for now. I&rsquo;m pretty decent with front-end myself so if this post can&rsquo;t prod him enough to give me a theme soon, then I may take a crack at it myself.</p>
 
 <p>Anyway&#8230;So, what can you expect from this blog? Bunch of randomness. Right from plebeian rants to life changing experiences, some awesome technology I&#8217;ve come across to crazy hacks that I&#8217;ve seen, I&#8217;ll try and note it down as much as possible. Hopefully, I&#8217;ll be able to connect with some of you with what I&#8217;ve to say. For others, I&#8217;m all in for a good debate.</p>
 
