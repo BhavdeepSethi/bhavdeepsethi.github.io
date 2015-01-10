@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tech | Deep Musings]]></title>
   <link href="http://bhavdeepsethi.github.io/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2014-12-14T16:39:07-05:00</updated>
+  <updated>2015-01-10T00:52:27-05:00</updated>
   <id>http://bhavdeepsethi.github.io/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Multiple Heat Layers with Google Maps]]></title>
+    <link href="http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
+    <updated>2015-01-09T21:03:17-05:00</updated>
+    <id>http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
+    <content type="html"><![CDATA[<p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
+
+
+<p> Now, using Heatmaps with Google Maps is pretty trivial. Google Maps has pretty decent documentation along with working examples. </p>
+
+
+
+
+<p>But how do we do it when we want to show muliple heat maps working independently on the same Google Map?</p>
+
+
+
+
+<!--more-->
+
+
+
+
+<p> Let&#8217;s take a closer look at the standard Heatmap example first. </p>
+
+
+<p>Go through the example given <a href="https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap" title="Heatmaps examples">here</a>.</p>
+
+<p>As we see, the following piece of code is responsible for initializing the heat map. It also has a function called changeGradient() which is of interest to us. </p>
+
+
+
+
+<pre>
+<code class="javascript">
+
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(37.774546, -122.433523),
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var pointArray = new google.maps.MVCArray(taxiData);
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: pointArray
+  });
+
+  heatmap.setMap(map);
+}
+
+
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+</code> 
+</pre>
+
+
+
+
+<p>The changeGradient function changes the default gradient values to anything you specify. If you notice, the color is changing from light blue rgba(0, 255, 255, 0) for low density points to Sharp Red rgba(255, 0, 0, 1) as the density increases. 
+</p>
+
+
+
+
+<p>What you can simply do is, initiate two different heatmaps, say heatmapPositive (light blue to dark blue) and heatmapNegative (yellow to red) in case you want to show two different heat maps for the positive and negative sentiment tweets. </p>
+
+
+
+
+<p>If you want sample code for this, you can find it <a href="https://github.com/BhavdeepSethi/cloudBigData/blob/master/twitterMapSource/twitMap.js" title="Github Link" >here</a>.  If you want to see how this looks, you can check out <a href="https://www.youtube.com/watch?v=9Qv7F_43dOk" >this video</a> which shows the default state and then with the dual heat maps. </p>
+
+
+
+
+<p> If you want to do much more, there is this neat library called <a href="http://www.patrick-wied.at/static/heatmapjs/" title="heatmap.js">heatmap.js</a>. It has bunch of features like adding legends and tool tips, customized maps, etc. 
+</p>
+
+
+
+
+<p> Hope you found this useful. If you&#8217;re aware of any better libraries out there, then Let me know!</p>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MariaDB seconds behind issue fixed]]></title>
@@ -222,93 +332,6 @@ Mapping this to the &#8220;show slave status&#8221; command, the only parameters
 
 
 <p>Hope this helps! If you have any further questions on MySQL partial replication, do let me know.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mysql Replication from an existing slave]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
-    <updated>2014-02-01T18:59:25-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
-    <content type="html"><![CDATA[<p>So you want to add another slave to an existing mysql replication environment? </p>
-
-
-<p>There are multiple ways to do this. </p>
-
-
-<p><strong>First option, as mentioned in the mysql documentation: </strong></p>
-
-
-<p><a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto-additionalslaves.html" title="Replication How to add additional slaves" target="_blank">Replication How to add additional slaves</a></p>
-
-
-<p>This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.<br />
-You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.<br />
-Plus, the whole process is not straightforward and really prone to errors. </p>
-
-
-<p><strong>Another option is to use lvm snapshot to take backups: </strong></p>
-
-
-<p><br /></p>
-
-<!--more -->
-
-
-<p><span id="more-187"></span><br />
-<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
-
-<p>I&#8217;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
-
-
-<p>But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? </p>
-
-
-<p>Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. </p>
-
-
-<p>There is a better way to do this.<br /><br />
-<strong>Using mysqldump (for mysql >= 5.5.3): </strong></p>
-
-
-<p>Let us see the query to dump a single table from a single database:<br /><br />
-<code language="sql"><br />
-mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip > dump_file_name.gz<br />
-</code> <br />
-<br />
-
-Let us go through the options:<br />
-&#8211;single-transaction: This basically starts the dump process under a new transaction without blocking any other applications.</p>
-
-
-<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_single-transaction" title="mysqldump: single-transaction" target="_blank">mysqldump: single-transaction</a></p>
-
-
-<p>&#8211;flush-logs: Flushes the MySQL server log files before starting the dump. </p>
-
-
-<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_flush-logs" title="mysqldump: flush-logs" target="_blank">mysqldump: flush-logs</a></p>
-
-
-<p>&#8211;dump-slave: This is the heart of the query. It is used to print the binary log coordinates (file name and position) of the dumped slave&#8217;s master in the dump file.<br />
-&#8211;dump-slave=1 prints the actual change master to statement in the sql dump.<br />
-Changing the value to 2 causes it to print the same but within a comment. Essentially, you can run it at your own convenience.<br />
-If you are replicating from a slave use &#8211;dump-slave. If you are running this query on the master itself, replace this with &#8211;master-data.<br />
-Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_dump-slave " title="mysqldump: dump-slave" target="_blank">mysqldump: dump-slave</a></p>
-
-
-<p>&#8211;max_allowed_packet: The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB </p>
-
-
-<p>gzip: Compress the data while being writhed into a dump file. You will see a good 70%~80% compression rate. This helps a lot when transferring files cross DC.</p>
-
-
-<p>To run this for multiple tables use the &#8211;tables option. If you want to run it for one or more databases, use &#8211;databases option.<br />
-You can use this for full replication as well as long as you&#8217;re using InnoDB tables. </p>
-
-
-<p>Basically you can use any of the <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html" title="mysqldump" target="_blank">mysqldump</a> flags as per your requirement. </p>
 
 ]]></content>
   </entry>
