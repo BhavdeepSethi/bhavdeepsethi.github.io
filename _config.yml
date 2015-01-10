@@ -108,7 +108,7 @@ disqus_short_name: deepmusings
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:UA-57965890-1
+google_analytics_tracking_id: UA-57965890-1
 
 # Facebook Like
 facebook_like: true
