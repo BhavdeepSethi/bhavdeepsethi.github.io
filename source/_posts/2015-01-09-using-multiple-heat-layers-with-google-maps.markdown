@@ -2,6 +2,7 @@
 layout: post
 title: "Using Multiple Heat Layers with Google Maps"
 date: 2015-01-09 21:03:17 -0500
+date_formatted: January 10, 2015
 comments: true
 categories: [tech, javascript, googlemaps, heatlayer]
 ---
