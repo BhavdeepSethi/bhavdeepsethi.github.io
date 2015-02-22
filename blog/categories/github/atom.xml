@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title><![CDATA[Category: github | Deep Musings]]></title>
+    <link href="http://www.deepmusings.com/blog/categories/github/atom.xml" rel="self"/>
+    <link href="http://www.deepmusings.com/"/>
+    <updated>2015-02-22T16:30:48-05:00</updated>
+    <id>http://www.deepmusings.com/</id>
+    <author>
+        <name><![CDATA[Bhavdeep Sethi]]></name>
+        <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
+      </author>
+    <generator uri="http://octopress.org/">Octopress</generator>
+
+    
+    <entry>
+        <title type="html"><![CDATA[Moving from WordPress to Github]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github/"/>
+        <updated>2014-12-11T21:03:59-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github</id>
+        <content type="html"><![CDATA[<p><p>
+So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
+
+<p><p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I&rsquo;m getting into the writing mode again and not to mention that a lot has happened in the past six months&hellip;so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br /></p>
+
+<p>But not anymore!
+<!--more-->
+I randomly googled &ldquo;<a href="http://goo.gl/02SPK4">blogging platform for coders</a>&rdquo;, went to the HN link from the result and read about Jekyll+Github. And I can&rsquo;t believe I hadn&rsquo;t heard about this for so long!  I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br /></p>
+
+<p>With Octopress into the picture, you do not even have to bother with the blog structure/theme. It took me about half a day to migrate the entire blog. Or whatever was left of it.</p>
+
+<p><p><h3>Why GitHub User Pages are way better than WordPress for your blog?</h3>
+<ul>
+<li>The power of Github! You can add collaborators, markdowns, issue tracking, versioning&hellip;do I need to say more?
+<li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
+<li>You own the code. You decide how the code is going to be rendered. In WordPress(WP), you ended up writing articles and having no control of what is going on behind the scene. It took me three days to get a simple jQuery functionality working with WP.
+<li> You can run your blog locally. Making changes is so much faster. I can work on the blog even when I don&rsquo;t have an internet connection.<br/>
+<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh&#8217;ing into a webserver is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
+<li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
+</ul>
+<br />
+I could go on and on&hellip;but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P</p>
+
+<p><p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" >this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" >This Github Help</a> page will give you steps for setting up a custom domain with your github page. That&rsquo;s it! Seriously. You&rsquo;re done! Hope to see you on this side.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Serving static content with Dropwizard]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
+        <updated>2014-02-13T19:22:37-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard</id>
+        <content type="html"><![CDATA[<p>Dropwizard, in its own words is a &#8220;Java framework for developing ops-friendly, high-performance, RESTful web services&#8221;.</p>
+
+
+<p>It is extremely lightweight, stable and mature, with most of the boilerplate code for configuration, application metrics, logging, alerting already built in.</p>
+
+
+<p>In User Insights, Dropwizard powers our REST API. The same code base also hosts an internal console powered by BackboneJS which consumes these API&#8217;s for visualizing the results. Now, here is where the challenge comes in. By default, static files are part of the JAR that runs your application server. Any changes to the console (quite frequent) requires the JAR to be rebuilt and deployed on the server. I wanted to separate the static files required by the console so that the UI developer could deploy the console package as per his whims without having any dependency on the API JAR. At the same time I did not want to deploy another web server on the box just for these files.</p>
+
+
+<p>One of the issues that most people face while serving static content with Dropwizard is how to serve these static files from outside the JAR. If you are one of those people, here is a post that you might find useful.</p>
+
+
+<p>You can serve static content for your Dropwizard application efficiently in two ways: <span id="more-218"></span><br />
+1) Using nginx<br />
+2) Using a custom Asset Bundler</p>
+
+
+<!--more-->
+
+
+<p>1) Using nginx:<br />
+You can configure nginx so that it serves all the static content, while unrecognized requests can be forwarded to your application server.<br />
+Here is a sample config:</p>
+
+
+<p><p><code>
+<pre></p>
+
+<h1>Site (port 80 -> 8080)</h1>
+
+<p>server {
+   listen          80;       # Listen on port 80 for IPv4 requests</p>
+
+<p>   server_name localhost;</p>
+
+<p>   access_log      /var/log/nginx/site_access.log;
+   error_log       /var/log/nginx/site_error.log;</p>
+
+<p>   # Set the root of the static content
+   root /usr/share/nginx/html;</p>
+
+<p>   # Redirect server error pages to the static page /50x.html
+   error_page 500 502 503 504 /50x.html;
+   location = /50x.html {
+     root /usr/share/nginx/html;
+   }</p>
+
+<p>   # Filter static content types and serve from the root
+   location ~*.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+     access_log off;
+     expires max;
+   }</p>
+
+<p>   # Serve the dynamic content (Site)
+   location / {
+     # The application provides its own detailed logs
+     access_log off;</p>
+
+<pre><code> # Hand over to the application
+ proxy_pass http://localhost:8080/;
+
+ proxy_set_header Host $http_host;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</code></pre>
+
+<p>   }</p>
+
+<p>}
+</pre>
+<p></code></p>
+<p>For the above config, nginx is serving files with the any of the following extensions: <em>.jpg, </em>.jpeg, <em>.gif, </em>.css, <em>.png, </em>.js, <em>.ico, </em>.html.<br />
+The location of these files should be: /usr/share/nginx/html<br />
+Any other content is forwarded to your application server serving on port 8080 (default Dropwizard port).<br />
+Any 50x error generated by your application server will cause a redirect to the /50x.html static file located at /usr/share/nginx/html</p>
+<p>2) Using custom Asset Bundler:<br />
+<a title="This github repo" href="https://github.com/bazaarvoice/dropwizard-configurable-assets-bundle" target="_blank">This github repo </a> hosts a drop in replacement for Dropwizard&rsquo;s AssetsBundle class which allows Assets (files) to be served from outside the jar.<br />
+Many people find it difficult to use this plugin because of lack of proper documentation/examples.<br />
+<a title="Here" href="https://github.com/BhavdeepFk/DropwizardAssets" target="_blank">Here</a> is a link to a sample project I created which shows the proper use of this plugin.</p>
+<p>Hope you find this useful. If you have any suggestions/alternatives regarding this, then do let me know!</p></p>
+]]></content>
+    </entry>
+    
+</feed>

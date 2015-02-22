@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title><![CDATA[Deep Musings]]></title>
+    <link href="http://www.deepmusings.com/atom.xml" rel="self"/>
+    <link href="http://www.deepmusings.com/"/>
+    <updated>2015-02-22T16:30:48-05:00</updated>
+    <id>http://www.deepmusings.com/</id>
+    <author>
+        <name><![CDATA[Bhavdeep Sethi]]></name>
+        <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
+    </author>
+    <generator uri="http://octopress.org/">Octopress</generator>
+
+    
+    <entry>
+        <title type="html"><![CDATA[Using Multiple Heat Layers with Google Maps]]></title>
+        <link href="http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
+        <updated>2015-01-09T21:03:17-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
+        <content type="html"><![CDATA[<p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
+
+
+<p> Now, using Heatmaps with Google Maps is pretty trivial. Google Maps has pretty decent documentation along with working examples. </p>
+
+
+
+
+<p>But how do we do it when we want to show muliple heat maps working independently on the same Google Map?</p>
+
+
+
+
+<!--more-->
+
+
+
+
+<p> Let&#8217;s take a closer look at the standard Heatmap example first. </p>
+
+
+<p>Go through the example given <a href="https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap" title="Heatmaps examples">here</a>.</p>
+
+<p>As we see, the following piece of code is responsible for initializing the heat map. It also has a function called changeGradient() which is of interest to us. </p>
+
+
+
+
+<pre>
+<code class="javascript">
+
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(37.774546, -122.433523),
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var pointArray = new google.maps.MVCArray(taxiData);
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: pointArray
+  });
+
+  heatmap.setMap(map);
+}
+
+
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+</code> 
+</pre>
+
+
+
+
+<p>The changeGradient function changes the default gradient values to anything you specify. If you notice, the color is changing from light blue rgba(0, 255, 255, 0) for low density points to Sharp Red rgba(255, 0, 0, 1) as the density increases. 
+</p>
+
+
+
+
+<p>What you can simply do is, initiate two different heatmaps, say heatmapPositive (light blue to dark blue) and heatmapNegative (yellow to red) in case you want to show two different heat maps for the positive and negative sentiment tweets. </p>
+
+
+
+
+<p>If you want sample code for this, you can find it <a href="https://github.com/BhavdeepSethi/cloudBigData/blob/master/twitterMapSource/twitMap.js" title="Github Link" >here</a>.  If you want to see how this looks, you can check out <a href="https://www.youtube.com/watch?v=9Qv7F_43dOk" >this video</a> which shows the default state and then with the dual heat maps. </p>
+
+
+
+
+<p> If you want to do much more, there is this neat library called <a href="http://www.patrick-wied.at/static/heatmapjs/" title="heatmap.js">heatmap.js</a>. It has bunch of features like adding legends and tool tips, customized maps, etc. 
+</p>
+
+
+
+
+<p> Hope you found this useful. If you&#8217;re aware of any better libraries out there, then Let me know!</p>
+
+
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Moving from WordPress to Github]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github/"/>
+        <updated>2014-12-11T21:03:59-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github</id>
+        <content type="html"><![CDATA[<p><p>
+So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
+
+<p><p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I&rsquo;m getting into the writing mode again and not to mention that a lot has happened in the past six months&hellip;so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br /></p>
+
+<p>But not anymore!
+<!--more-->
+I randomly googled &ldquo;<a href="http://goo.gl/02SPK4">blogging platform for coders</a>&rdquo;, went to the HN link from the result and read about Jekyll+Github. And I can&rsquo;t believe I hadn&rsquo;t heard about this for so long!  I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br /></p>
+
+<p>With Octopress into the picture, you do not even have to bother with the blog structure/theme. It took me about half a day to migrate the entire blog. Or whatever was left of it.</p>
+
+<p><p><h3>Why GitHub User Pages are way better than WordPress for your blog?</h3>
+<ul>
+<li>The power of Github! You can add collaborators, markdowns, issue tracking, versioning&hellip;do I need to say more?
+<li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
+<li>You own the code. You decide how the code is going to be rendered. In WordPress(WP), you ended up writing articles and having no control of what is going on behind the scene. It took me three days to get a simple jQuery functionality working with WP.
+<li> You can run your blog locally. Making changes is so much faster. I can work on the blog even when I don&rsquo;t have an internet connection.<br/>
+<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh&#8217;ing into a webserver is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
+<li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
+</ul>
+<br />
+I could go on and on&hellip;but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P</p>
+
+<p><p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" >this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" >This Github Help</a> page will give you steps for setting up a custom domain with your github page. That&rsquo;s it! Seriously. You&rsquo;re done! Hope to see you on this side.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Let's just live for today!]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/04/25/lets-just-live-for-today/"/>
+        <updated>2014-04-25T18:42:32-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/04/25/lets-just-live-for-today</id>
+        <content type="html"><![CDATA[<p>I&#8217;m don&#8217;t know the actual source of this poem so can&#8217;t give proper credit for this. If you know where this verse is from, please reach out to me so I can link the source.  </p>
+
+
+
+
+<p><em><br />
+Before the world validates our identity based on race &amp; creed,<br />
+Before they tell us where we belong &amp; which air we ought to breathe,<br />
+For now, for once, let&#8217;s just live for today!</p>
+
+
+<p>Before life drags us apart and tries molding our fate,<br />
+</p>
+
+
+<p></em></p>
+
+<!--more-->
+
+
+<p><em>
+Before fanaticism conquers love &amp; our credibility is put on stake,<br />
+For now, for once, let&rsquo;s just live for today!</p>
+
+<p>Before the night looses its charm &amp; the moon hides &amp; fades,<br />
+Before the first gleam of sunshine makes them discover our shade,<br />
+For now, for once, let&#8217;s just live for today!</p>
+
+
+<p>Before social apprehensions make us kneel &amp; break,<br />
+Before we&#8217;re made to choose between the obvious &amp; man-made,<br />
+For now, for once, let&#8217;s just live for today!<br />
+</em></p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[MariaDB seconds behind issue fixed]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/03/10/mariadb-seconds-behind-issue-fixed/"/>
+        <updated>2014-03-10T16:28:38-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/03/10/mariadb-seconds-behind-issue-fixed</id>
+        <content type="html"><![CDATA[<p>We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug:
+We had setup maria 10.0.4 for multisource replication. It was replicating from a Percona 5.5 master. When we started replication, Maria was a day behind its master. It was working fine, but we noticed this phenomenon:
+When we execute <code language="sql">show all slaves status</code> consecutively, the &lsquo;seconds_behind_master&rsquo; flips from 0 to XXX and XXX to 0.
+Note: XXX is some positive number.</p>
+
+<p>Reference: <a href="https://mariadb.atlassian.net/browse/MDEV-5114">https://mariadb.atlassian.net/browse/MDEV-5114</a></p>
+
+<p>The fix is deployed in MariaDB 10.0.10.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Slash n is back!]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back/"/>
+        <updated>2014-03-02T19:12:36-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back</id>
+        <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
+
+
+<p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
+
+
+<p>To make things convenient slash n app is now available in both Android and iOS stores:</p>
+
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p><a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
+
+<p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
+
+
+<p>Also, you can go to this <a href="http://slashn.flipkart.net/getapp" title="slash n" target="_blank">link</a> on your smart phone to get the app directly.</p>
+
+
+<p>For more details, visit <a href="http://slashn.flipkart.net/" title="slash n" target="_blank">slash n</a> website. </p>
+
+
+<p>See you there!</p>
+
+
+<p>P.S.: Watch out for my talk on <strong>Know Your Customer (KYC) ~ Deriving User Insights</strong>. Here is the synopsis of the talk: </p>
+
+
+<p><em>How can we customize every customer engagement through event derivations? How can we ensure every user interaction is relevant and drive loyalty and retention through it? Did you know it also enables finding who is a reseller, who is a Frequent shopper at Flipkart and who needs a mailer to be brought back? How do we improve customer support interaction by knowing who is anxious, who is happy and who is an angry repeat caller. Presenting the &#8220;User Insights Platform&#8221; which enables us to dig into 100s of TB of data at Flipkart to derive insights about the user.</em></p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Three most significant things you have learnt till date]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date/"/>
+        <updated>2014-02-22T18:27:28-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date</id>
+        <content type="html"><![CDATA[<h3>Write down the three most significant things you have learnt till date.</h3>
+
+
+
+
+<p>I had to answer this question recently and I realized how different life experiences reflect on your views. I asked some of my friends this question and it was really interesting to hear what others had to say. Some said things that were relevant to them at that moment of time, some shared their long held beliefs. Knowingly or unknowingly they share something that defines them. You&#8217;ll probably end up learning something about yourself as well.  </p>
+
+
+<p>So, now, I ask you to answer the same question. What are the three most significant things you have learnt till date? Make sure that you don&#8217;t spend too much time thinking about it. Just list out down the top three things that you can think of. You can then elaborate on why you think you chose these. </p>
+
+
+<p>By the way, here were my answers: </p>
+
+
+<p><strong>#1 Always listen to your heart. It&#8217;ll lead you the right way. </strong><br />
+<span id="more-263"></span></p>
+
+
+<!--more-->
+
+
+<p>Post under-graduation, I had offers from Infosys and TCS, two of the biggest IT companies in India. I joined Infosys based on the feedback I got from my seniors. Having excelled in their training program, they decided to place me in a department called LERN. Infosys was entering into the e-learning market, a $50 Billion industry, which is likely to double in size before 2015. They needed sharp folks who could translate technically challenging material into easy to understand workflows. One caveat though, the job did not require any coding, just using some tools. They pick their best programmers and put them in a department which needed zero programming skills. Ironic? Tell me about it. I obviously asked for a department change, but they said it couldn&#8217;t be done for at least a year. Oh, and Infosys had made us sign a contract that would enforce a monetary fine in case I leave the company before completing a year. They were asking for more money than they had actually paid me till that time. Along with this, the HRs were using lots of legal jargon to make sure I did not leave. I did not know anybody who had left before completing a year, so I didn&#8217;t know how to proceed ahead.
+</p>
+
+
+<p>I knew one thing though. The few months spent there were depressing. The work life was mediocre. It was not challenging enough. It was not something I wanted to do. This in turn was taking a toll on my personal life as well. Misunderstandings, arguments… and the whole nine yards were getting regular with friends. After one of such days, I realized that no amount of money was worth this. I decided I had to leave right then. I didn&#8217;t know what I was going to do next. I was ready to work for absolutely no salary at all. I just wanted to do some good work. With only the belief in my ability to make /something/ out of this situation, I decided to leave Infosys and join a startup (MIME360). This, obviously did not go down well with friends and family. I was leaving a stable job with a reputed IT giant  to work in a company incubating in college with 6 employees. Startups weren&#8217;t a big deal in India back then (still aren&#8217;t, but things are changing fast) so it was difficult to explain to people the rationale behind the move. I stuck to my decision, sorted out my priorities and was ready to face whatever came next. Eventually, Flipkart.com, the biggest eCommerce company in India, acquired MIME360 to build its digital arm. And I&#8217;ve never looked back since. <img src="http://www.deepmusings.com/wp-includes/images/smilies/icon_smile.gif" alt=":)" class="wp-smiley" />
+</p>
+
+
+<p>
+Considering we spend one third of our life working, make sure you love what you&#8217;re doing.
+</p>
+
+
+<p><strong>#2 Hard work beats Talent when talent doesn&#8217;t work hard.</strong></p>
+
+
+<p>At Flipkart, I got the opportunity to work with some of the best brains in the country. I was surrounded by people from premier institutions like IIT, BITS, NIT, IIIT, etc., while I was from a simple college from a simple university. I had heard a lot of hype about performance levels of individuals from these colleges. I realize that&#8217;s exactly what it was. Pure hype. So you were a topper of Computer Science department? Congrats! This might help you get into the company, however, this matters very little in real life. Most of the challenges we face are new so, past laurels don&#8217;t matter much. What matters is how much effort you can put into a task and your ability to get things done. You have to constantly keep learning and keep up with technology. If you love what you do and work with dedication, you&#8217;ll never stop growing, both personally and professionally. And soon, people will recognize and respect what you add to the team, regardless of your background. </p>
+
+
+<p><strong>#3 Time heals almost everything. Give time, time. </strong></p>
+
+
+<p>This might be a little personal but it resonates with me very strongly. Like everybody, I&#8217;ve seen lots of ups and downs in my life (Yes, I also realize, at 25, I&#8217;ve not seen anything yet). But what has worked for me is I tend to stick with problems longer. If you want things to work out, sometimes you&#8217;ll have to give it time. Healing doesn&#8217;t take a day. It takes a lot of little steps to get back. Eventually everything falls into place. It might not be how you pictured it, it might not even work in your favor, but over the long run, you&#8217;ll realize that it&#8217;s actually better this way. In the end, it&#8217;s about patience, perseverance and persistence. Do not give up. </p>
+
+
+<hr />
+
+
+
+
+<p><font color="#1F7DE0"><u><i>Update</i></u></font> : I asked the same question on <a href="https://news.ycombinator.com/news" title="HN" target="_blank">HN</a>. Here are some gems <a href="https://news.ycombinator.com/item?id=7281635" title="Ask HN" target="_blank">from that post</a> in no particular order: </p>
+
+
+<ul>
+<li> Don&#8217;t be too hard on yourselves. You tend to make mistakes, and there is no way to become better without making them. Put the past behind and move on. Easier said than done, though.</li>
+<li> Failure is the default state of any venture. Give your best to succeed, but remember that you&#8217;re starting from failure. This way, you learn to handle the lows associated with failures better.</li>
+<li> Focus on the process as much as on the results. The idea is to master the process that&#8217;s expected to return results so that you can keep using it to succeed at various things. </li>
+<li> Opportunity Cost: Everything has a cost. Everything. At a minimum, it is the foregone time you could have invested into other activities rather than the thing that you&#8217;ve chosen to invest time in. Even if you had unlimited funds, you still have to chose what to do with your time, and that&#8217;s frighteningly finite. Realize, therefore, that you are always giving up something, and choosing to be weak in one area in return for being strong in another. No one is good at everything. No one has it all.</li>
+<li> Labor-elasticity relative to wages/money can be negative, and that&#8217;s ok. For those not keyed in on economic mumbo-jumbo, that simply means that having more money can result in people choosing to work less. First year economics people (and i&#8217;m assuming many young, and HN-types) assume that everyone will do more work for more money. But money is not the point, and unless you&#8217;re neurotic and insecure (and most people who chase money are), there comes a time when you realise that maybe now that you&#8217;ve got money, you can instead use it on the things that really matter rather than trying to get more of it. And work, on the whole, is not the shit that matters&#8230;</li>
+<li> Be humble and self-critical. Humble to realise how fallible and pathetically human you are, so that you don&#8217;t beat yourself or others up too much, and how much luck had to do with any success that comes your way, and how much it has to do with a great deal of suffering that comes the way of others. Self-critical so you can deal with, improve upon and compensate for the flaws you realise you have.</li>
+<li>Spend more money on experiences and less on things.</li>
+<li>Don&#8217;t dread potentially poor outcomes because they are never as bad as they seem. </li>
+<li>Competence, confidence, and efficiency go a long way.</li>
+<li> Think bigger. Work on ambitious projects. You become what you spend your time on. And big visions attract money and talent. Think bigger.</li>
+<li> Life is short, so make sure you&#8217;ll have no regrets when you die</li>
+<li> Whether you think you can or can&#8217;t, you&#8217;re right </li>
+<li> Foolish decisions are often the ones you regret the less </li>
+<li>Work hard. Be strong. Don&#8217;t complain.</li>
+</ul>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Serving static content with Dropwizard]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
+        <updated>2014-02-13T19:22:37-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard</id>
+        <content type="html"><![CDATA[<p>Dropwizard, in its own words is a &#8220;Java framework for developing ops-friendly, high-performance, RESTful web services&#8221;.</p>
+
+
+<p>It is extremely lightweight, stable and mature, with most of the boilerplate code for configuration, application metrics, logging, alerting already built in.</p>
+
+
+<p>In User Insights, Dropwizard powers our REST API. The same code base also hosts an internal console powered by BackboneJS which consumes these API&#8217;s for visualizing the results. Now, here is where the challenge comes in. By default, static files are part of the JAR that runs your application server. Any changes to the console (quite frequent) requires the JAR to be rebuilt and deployed on the server. I wanted to separate the static files required by the console so that the UI developer could deploy the console package as per his whims without having any dependency on the API JAR. At the same time I did not want to deploy another web server on the box just for these files.</p>
+
+
+<p>One of the issues that most people face while serving static content with Dropwizard is how to serve these static files from outside the JAR. If you are one of those people, here is a post that you might find useful.</p>
+
+
+<p>You can serve static content for your Dropwizard application efficiently in two ways: <span id="more-218"></span><br />
+1) Using nginx<br />
+2) Using a custom Asset Bundler</p>
+
+
+<!--more-->
+
+
+<p>1) Using nginx:<br />
+You can configure nginx so that it serves all the static content, while unrecognized requests can be forwarded to your application server.<br />
+Here is a sample config:</p>
+
+
+<p><p><code>
+<pre></p>
+
+<h1>Site (port 80 -> 8080)</h1>
+
+<p>server {
+   listen          80;       # Listen on port 80 for IPv4 requests</p>
+
+<p>   server_name localhost;</p>
+
+<p>   access_log      /var/log/nginx/site_access.log;
+   error_log       /var/log/nginx/site_error.log;</p>
+
+<p>   # Set the root of the static content
+   root /usr/share/nginx/html;</p>
+
+<p>   # Redirect server error pages to the static page /50x.html
+   error_page 500 502 503 504 /50x.html;
+   location = /50x.html {
+     root /usr/share/nginx/html;
+   }</p>
+
+<p>   # Filter static content types and serve from the root
+   location ~*.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+     access_log off;
+     expires max;
+   }</p>
+
+<p>   # Serve the dynamic content (Site)
+   location / {
+     # The application provides its own detailed logs
+     access_log off;</p>
+
+<pre><code> # Hand over to the application
+ proxy_pass http://localhost:8080/;
+
+ proxy_set_header Host $http_host;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</code></pre>
+
+<p>   }</p>
+
+<p>}
+</pre>
+<p></code></p>
+<p>For the above config, nginx is serving files with the any of the following extensions: <em>.jpg, </em>.jpeg, <em>.gif, </em>.css, <em>.png, </em>.js, <em>.ico, </em>.html.<br />
+The location of these files should be: /usr/share/nginx/html<br />
+Any other content is forwarded to your application server serving on port 8080 (default Dropwizard port).<br />
+Any 50x error generated by your application server will cause a redirect to the /50x.html static file located at /usr/share/nginx/html</p>
+<p>2) Using custom Asset Bundler:<br />
+<a title="This github repo" href="https://github.com/bazaarvoice/dropwizard-configurable-assets-bundle" target="_blank">This github repo </a> hosts a drop in replacement for Dropwizard&rsquo;s AssetsBundle class which allows Assets (files) to be served from outside the jar.<br />
+Many people find it difficult to use this plugin because of lack of proper documentation/examples.<br />
+<a title="Here" href="https://github.com/BhavdeepFk/DropwizardAssets" target="_blank">Here</a> is a link to a sample project I created which shows the proper use of this plugin.</p>
+<p>Hope you find this useful. If you have any suggestions/alternatives regarding this, then do let me know!</p></p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[MySQL Partial Replication]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication/"/>
+        <updated>2014-02-08T18:36:09-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication</id>
+        <content type="html"><![CDATA[<p>A couple of folks have asked me to elaborate more on partial replication.<br />
+What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? </p>
+
+
+<p>Here is a follow up post to answer these and other such questions. </p>
+
+
+<p>-What is Partial Replication?<br />
+Partial replication is when your slave is replicating only certain db or tables from the master. </p>
+
+
+<p>-What is the use of partial replication? </p>
+
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p>You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you&rsquo;re low on space, it makes sense replicating only the desired tables.<br />
+There might be other reasons and this really depends on the application consuming the data.<br />
+For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.<br />
+To solve this problem, we&rsquo;re using MariaDB 10.0&#8242;s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting.</p>
+
+<p>-How do I do it?<br />
+<span id="more-204"></span><br />
+There are multiple ways to do this. Here is a good post covering some of the ways:<br />
+<a href="http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/" title="Partial Replication" target="_blank">http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/</a></p>
+
+
+<p>- Can you add/remove tables/db to existing replication?<br />
+Yes! Follow the following steps:<br />
+1) Run <code language="sql">stop slave</code> on the slave where you want to add the tables/db. Let&#8217;s call this target slave.<br />
+2) Using method #3 from this post, take the dump of the required data.<br />
+3) Using the replication parameters captured in step 2, use the following command to update the target slave:<br />
+<br />
+<code language="sql">
+START SLAVE UNTIL MASTER_LOG_FILE='&lt;log_file&gt;', MASTER_LOG_POS=&lt;log_position&gt;; 
+</code>
+<br />
+The above command starts replication till the &#8216;log_position&#8217; and then stops the slave itself.<br />
+4) Now, load the dumped data on the target slave.<br />
+5) If you&#8217;re replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave.<br />
+6) Run <code language="sql">start slave</code> on the target slave and watch the new tables getting the new data! :) </p>
+
+
+<p>- Is it safe?<br />
+Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication.<br />
+Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you&#8217;re using statement based replication. </p>
+
+
+<p>- If I am using slave status to find the replication parameters, then which slave parameters should I consider?<br />
+For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave.<br />
+The <code language="sql">show slave status</code> command has three log files and there might be confusion as to which log file to use.<br />
+If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread.<br />
+Mapping this to the &#8220;show slave status&#8221; command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos. </p>
+
+
+<p>Hope this helps! If you have any further questions on MySQL partial replication, do let me know.</p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Mysql Replication from an existing slave]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
+        <updated>2014-02-01T18:59:25-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
+        <content type="html"><![CDATA[<p>So you want to add another slave to an existing mysql replication environment? </p>
+
+
+<p>There are multiple ways to do this. </p>
+
+
+<p><strong>First option, as mentioned in the mysql documentation: </strong></p>
+
+
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto-additionalslaves.html" title="Replication How to add additional slaves" target="_blank">Replication How to add additional slaves</a></p>
+
+
+<p>This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.<br />
+You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.<br />
+Plus, the whole process is not straightforward and really prone to errors. </p>
+
+
+<p><strong>Another option is to use lvm snapshot to take backups: </strong></p>
+
+
+<p><br /></p>
+
+<!--more -->
+
+
+<p><span id="more-187"></span><br />
+<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
+
+<p>I&#8217;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
+
+
+<p>But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? </p>
+
+
+<p>Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. </p>
+
+
+<p>There is a better way to do this.<br /><br />
+<strong>Using mysqldump (for mysql >= 5.5.3): </strong></p>
+
+
+<p>Let us see the query to dump a single table from a single database:<br /><br />
+<code language="sql"><br />
+mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip > dump_file_name.gz<br />
+</code> <br />
+<br />
+
+Let us go through the options:<br />
+&#8211;single-transaction: This basically starts the dump process under a new transaction without blocking any other applications.</p>
+
+
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_single-transaction" title="mysqldump: single-transaction" target="_blank">mysqldump: single-transaction</a></p>
+
+
+<p>&#8211;flush-logs: Flushes the MySQL server log files before starting the dump. </p>
+
+
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_flush-logs" title="mysqldump: flush-logs" target="_blank">mysqldump: flush-logs</a></p>
+
+
+<p>&#8211;dump-slave: This is the heart of the query. It is used to print the binary log coordinates (file name and position) of the dumped slave&#8217;s master in the dump file.<br />
+&#8211;dump-slave=1 prints the actual change master to statement in the sql dump.<br />
+Changing the value to 2 causes it to print the same but within a comment. Essentially, you can run it at your own convenience.<br />
+If you are replicating from a slave use &#8211;dump-slave. If you are running this query on the master itself, replace this with &#8211;master-data.<br />
+Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_dump-slave " title="mysqldump: dump-slave" target="_blank">mysqldump: dump-slave</a></p>
+
+
+<p>&#8211;max_allowed_packet: The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB </p>
+
+
+<p>gzip: Compress the data while being writhed into a dump file. You will see a good 70%~80% compression rate. This helps a lot when transferring files cross DC.</p>
+
+
+<p>To run this for multiple tables use the &#8211;tables option. If you want to run it for one or more databases, use &#8211;databases option.<br />
+You can use this for full replication as well as long as you&#8217;re using InnoDB tables. </p>
+
+
+<p>Basically you can use any of the <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html" title="mysqldump" target="_blank">mysqldump</a> flags as per your requirement. </p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Resolutions 2014!]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/01/12/resolutions-2014/"/>
+        <updated>2014-01-12T19:06:59-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/01/12/resolutions-2014</id>
+        <content type="html"><![CDATA[<p>Resolutions. Hard to make, harder to keep. How are your resolutions holding up? Here is a quick update on mine. </p>
+
+
+<p><b>Read More </b><br />
+Leisure:<br />
+Last year I made a resolution of reading at least 25 books and thanks to Isaac Asimov, I was able to reach this target.<br />
+With the amount of tech blogs I read, increasing this number seems difficult right now. So the plan of reading 25 stays! I still intend to buy a lot more to add to my collection.<br />
+Technology:<br />
+Thanks to last year&#8217;s resolution, I&#8217;ve got into a habit of going through HackerNews everyday. So I&#8217;m decently updated with technology. Intend to continue doing this. </p>
+
+
+<p><b>Write More</b></p>
+
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p>And this doesn&rsquo;t including coding! I did a lot of writing while preparing my SoP for the MS applications and I enjoyed it a lot. And I could see a noticeable difference when I had to fill appraisal forms. In Flipkart, we have a very comprehensive appraisal process. A major part of this process is writing self and peer reviews. My earlier self reviews were generally very terse. Luckily my work spoke for me and I had no issues whatsoever. However, after working on the SoP for 2-3 months, writing the self review was piece of cake this time. Sat down late night and finished the entire review process in 4 hours! That was when I decided I&rsquo;m going to write more regularly. It really brings a clarity in thought. While I would love to follow the 1000 words per day formula, I want to keep a realistic target for this. I am keeping a target of 1000 words per week for the initial three months and then will evaluate how to continue going forward.</p>
+
+<p><b>Watch More</b><br />
+Videos. I absolutely love the Online Courses (MOOC). From statistics, gamification, entrepreneurship to psychology, I follow a lot of these courses. I don&#8217;t have a target for this because sometimes I end up doing 3-4 of these together but planning to concentrate more on Data Analysis, Big Data and Machine Learning courses this year. </p>
+
+
+<p><b>Exercise</b><br />
+7-min exercise to the rescue! <span id="more-133"></span> I&#8217;ve gained a lot from these and would like to continue follow this routine. It has helped me when playing soccer as well. For those of you who are not aware of this routine, here is a brief description: </p>
+
+
+<p>Most of us don&#8217;t have time (the will rather) for regular workout. Here is a 7 minute workout that requires only a wall and a chair. Hopefully, giving only 7 minutes in a day will be an incentive to try this out.<br />
+Here is a site which will help you do the exercises in order:<br />
+<a href="http://7-min.com/"> Seven Minute Workout Timer</a> </p>
+
+
+<p>Here is a post from LifeHacker for checking the correct form of doing these exercises:<br />
+<a hred="http://lifehacker.com/these-12-videos-show-the-proper-form-for-a-7-minute-ful-499199366">These 12 Videos Show the Proper Form for a 7-Minute Full Workout</a> </p>
+
+
+<p><b>Miscellaneous: </b></p>
+
+
+<p>Learn a new language: I started out with Spanish last year, followed it up for a week and then got busy with work. I hope to gain mastery of at least basic Spanish that will help me to communicate easily. </p>
+
+
+<p>Open Source: My contributions to open source have been limited to submitting issues in MariaDB. Time to take this to the next level and actually contributing to the community. Whether it will be MariaDB or some Apache project, I still have to still finalize on this. </p>
+
+
+<p>Travel: Last year, I managed trips to all parts of India. Starting with Leh (north) in Jan, Goa (west) in March, Pondicherry (south) in August and ending with Sikkim (East) in December!<br />
+I intended to take a sabbatical for a month this year and go backpacking. The plan is to cover as many states in India as possible. Hopefully, I&#8217;ll cancel most of the places from <a href="http://www.thrillophilia.com/blog/50-places-to-visit-in-india-before-you-turn-30/">this list</a>!</p>
+
+
+<p>That&#8217;s it for now. Fingers crossed! Will update this post when I add anymore to the list.  Let me know what are your resolutions for 2014.</p>
+
+
+<p>Oh, and wishing you a Happy and Prosperous New Year! May all of you spend the year doing what you love to do the most! :) </p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Some Inspiring Commencement Speeches]]></title>
+        <link href="http://www.deepmusings.com/blog/2013/08/17/some-inspiring-commencement-speeches/"/>
+        <updated>2013-08-17T20:30:13-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2013/08/17/some-inspiring-commencement-speeches</id>
+        <content type="html"><![CDATA[<h3>David Foster Wallace 2005 Kenyon College Commencement Speech - This is Water.</h3>
+
+
+<p>By far one of the best commencement speech ever. It talks about something so basic, yet something so profound that it makes you wonder how cluelessly you&#8217;ve been living your life.</p>
+
+
+<p>The speech has been turned into a book as well:</p>
+
+
+<p>http://www.amazon.com/This-Water-Delivered-Significant-Compassionate/dp/0316068225/</p>
+
+
+<p>Link to the full speech:</p>
+
+
+<p><iframe width="584" height="438" src="http://www.youtube.com/embed/IYGaXzJGVAQ?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+
+
+<p>Here is a beautiful visual excerpt of the same video:<br />
+<a title="This Is Water - Visual Excerpt" href="http://www.youtube.com/watch?v=DaVrn1Sz0H8" target="_blank">http://www.youtube.com/watch?v=DaVrn1Sz0H8</a></p>
+
+
+<p>I don&#8217;t think I&#8217;ll do justice summarizing this speech. Just quoting the statements I found most profound.</p>
+
+
+<p>The most obvious realities are most often the ones that are hardest to see and talk about. If you are automatically sure that you know what reality is, who and what is really important; if you want to operate on your default setting, then you, like me, will not consider possibilities that are not annoying and miserable.<br />
+If you really learn how to think, how to pay attention, then you&#8217;ll know you have other options.<br />
+You get to consciously decide what has meaning and what doesn&#8217;t. That is real freedom. That is being educated and understanding how to think.<br />
+The real value of real education which has almost nothing to do with knowledge and everything to do with simple awareness. Awareness of what is so real and essential, so hidden in plain sight all around us all the time that we have to keep reminding ourselves over and over. <strong>This is Water.</strong></p>
+
+
+<hr />
+
+
+<h3>Steve Jobs, Stanford 2005</h3>
+
+
+<p>Very very inspiring. Three big take aways from this speech:</p>
+
+
+<!--more-->
+
+
+<p><span id="more-67"></span><br />
+1) Follow your heart.</p>
+
+
+<p>So you have to trust that the dots will connect in future. Because believing that the dots will connect down the road will give you the confidence to follow your heart even when it leads you off the well worn path and that will make all the difference.</p>
+
+
+<p>2) Love and loss.</p>
+
+
+<p>Sometimes life is gonna hit you in the head with a brick. Don&#8217;t lose faith.<br />
+The only thing that will keep you going is to love what you do. If you haven&#8217;t found it yet, then keep looking. Don&#8217;t settle.</p>
+
+
+<p>3) Death</p>
+
+
+<p>Remembering that I’ll be dead soon is the most important tool I’ve ever encountered to help me make the big choices in life. Because almost everything — all external expectations, all pride, all fear of embarrassment or failure – these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.</p>
+
+
+<p>Your time is limited, so don&#8217;t waste it living someone else&#8217;s life. Don&#8217;t be trapped by dogma — which is living with the results of other people&#8217;s thinking. Don&#8217;t let the noise of others&#8217; opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.</p>
+
+
+<p>Link to the full speech:</p>
+
+
+<p><iframe width="584" height="438" src="http://www.youtube.com/embed/UF8uR6Z6KLc?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+
+
+<hr />
+
+
+<h3>Jeff Bezos&#8217;s Princeton Commencement Speech</h3>
+
+
+<p>Bezos spoke to the Class of 2010 about the difference between choices and gifts. Cleverness, Bezos pointed out, is a gift, while being kind to others is a choice. One&#8217;s character, he suggested, is reflected not in the gifts one is endowed with at birth but rather by the choices one makes over the course of a lifetime.</p>
+
+
+<p>Ponder over these:</p>
+
+
+<ul>
+<li>How will you use your gifts? What choices will you make?</li>
+<li>Will inertia be your guide, or will you follow your passions?</li>
+<li>Will you follow dogma, or will you be original?</li>
+<li>Will you choose a life of ease, or a life of service and adventure?</li>
+<li>Will you wilt under criticism, or will you follow your convictions?</li>
+<li>Will you bluff it out when you&#8217;re wrong, or will you apologize?</li>
+<li>Will you guard your heart against rejection, or will you act when you fall in love?</li>
+<li>Will you play it safe, or will you be a little bit swashbuckling?</li>
+<li>When it&#8217;s tough, will you give up, or will you be relentless?</li>
+<li>Will you be a cynic, or will you be a builder?</li>
+<li>Will you be clever at the expense of others, or will you be kind?</li>
+</ul>
+
+
+<p>Full link to the speech:</p>
+
+
+<p><iframe width="584" height="438" src="http://www.youtube.com/embed/vBmavNoChZc?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+
+
+<hr />
+
+
+<h3>JK Rowling, Harvard 2008</h3>
+
+
+<p>Two main themes of her extremely witty speech were<br />
+1) Failure -<br />
+Failure is a very liberating experience. It is the stripping of the inessentials. Hitting rock bottom, you realize that you can survive anything now. You understand that your qualifications and your CVs are not your life.</p>
+
+
+<p>2) Imagination/Empathy<br />
+We are bound to touch other people&#8217;s lives simply by existing. So let ua use our abilities to help the less fortunate. We do not need magic to transform our world. We carry all the power we need inside ourselves already.</p>
+
+
+<p>Link to the full speech:</p>
+
+
+<p><iframe width="584" height="438" src="http://www.youtube.com/embed/wHGqp8lz36c?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+
+
+<hr />
+
+
+<h3>Randy Pausch&#8217;s Last Lecture: Achieving Your Childhood Dreams</h3>
+
+
+<p>Even though this is not a commencement speech, it deserves a special mention. It&#8217;s a thought provoking, truly inspiring lecture. Here are some gems from this video:</p>
+
+
+<ul>
+<li>We cannot change the cards we&#8217;re dealt, just how we play the hand.</li>
+<li>The brick walls are there for a reason. The brick walls are not there to keep us out. The brick walls are there for us to show how badly we want something.</li>
+<li>Never lose the childlike wonder.</li>
+<li>Help Others.</li>
+<li>Loyalty is a two-way street.</li>
+<li>Never give up.</li>
+<li>Tell the truth.</li>
+<li>Be earnest.</li>
+<li>Apologize when you screw up.</li>
+<li>Focus on others, not yourself.</li>
+<li>Get a feedback loop and listen to it.</li>
+<li>Show gratitude.</li>
+<li>Don&#8217;t complain, just work harder.</li>
+<li>Be good at something, it makes you valuable.</li>
+<li>Find the best in everybody, no matter how long you have to wait for them to show it.</li>
+<li>Be prepared. &#8220;Luck&#8221; is where preparation meets opportunity.</li>
+</ul>
+
+
+<p>Link to the full speech:</p>
+
+
+<p><iframe width="584" height="438" src="http://www.youtube.com/embed/ji5_MqicxSo?feature=oembed" frameborder="0" allowfullscreen></iframe></p>
+
+
+<hr />
+
+
+<p>Which are your favorite commencement speeches? Or which talks/videos do you find highly inspirational? Let me know!</p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Let there be light!]]></title>
+        <link href="http://www.deepmusings.com/blog/2013/07/25/let-there-be-light/"/>
+        <updated>2013-07-25T18:28:54-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2013/07/25/let-there-be-light</id>
+        <content type="html"><![CDATA[<p>Hello Bloggers!</p>
+
+
+<p>Let me start by telling you what took so long for the first post to come up! After registering with GoDaddy for the domain, I&#8217;ve been waiting for my friend Shailesh (An awesome designer btw) to give me a wicked cool custom theme. You don&#8217;t expect me to start with a drab page, right? But alas, here we are. </p>
+
+
+
+
+<!--more-->
+
+
+<p>He got busy with other things and I&rsquo;m stuck with some random theme for now. I&rsquo;m pretty decent with front-end myself so if this post can&rsquo;t prod him enough to give me a theme soon, then I may take a crack at it myself.</p>
+
+<p>Anyway&#8230;So, what can you expect from this blog? Bunch of randomness. Right from plebeian rants to life changing experiences, some awesome technology I&#8217;ve come across to crazy hacks that I&#8217;ve seen, I&#8217;ll try and note it down as much as possible. Hopefully, I&#8217;ll be able to connect with some of you with what I&#8217;ve to say. For others, I&#8217;m all in for a good debate.</p>
+
+
+<p>You can expect some content rolling in as soon as I setup some basic pages here. I&#8217;m still finalizing on the hosting service for this blog. Signing off for now.</p>
+
+
+<p>Till we meet again.</p>
+
+]]></content>
+    </entry>
+    
+</feed>

@@ -9,13 +9,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Deep Musings</title>
+        <title>Using Multiple Heat Layers with Google Maps - Deep Musings</title>
         <meta name="author" content="Bhavdeep Sethi">
         
         <meta name="description" content="Developer. Inquisitive. Technology enthusiast. Soccer Fanatic.">
         
         <meta name="viewport" content="width=device-width">
-        <link rel="canonical" href="http://www.deepmusings.com">
+        <link rel="canonical" href="http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps">
 
         <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
         <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
@@ -78,15 +78,10 @@
                 
                 <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
                 
-                        
+                    <article class="article article--single">
+    <header class="article__header">
     
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/">Using Multiple Heat Layers with Google Maps</a>
-        </h1>
+        <h1 class="article__title">Using Multiple Heat Layers with Google Maps</h1>
     
 
     
@@ -109,6 +104,7 @@
         <i class="fa fa-tags"></i>
         <ul class="unstyled">
         
+
             
                 <li><a class='category' href='/blog/categories/googlemaps/'>googlemaps</a></li>
             
@@ -118,7 +114,7 @@
             
                 <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
             
-            
+        
         </ul>
     </div>
 
@@ -131,8 +127,7 @@
 
 
 
-    <div class="article__content clearfix">
-        <p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
+    <p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
 
 
 <p> Now, using Heatmaps with Google Maps is pretty trivial. Google Maps has pretty decent documentation along with working examples. </p>
@@ -145,295 +140,107 @@
 
 
 
-
-        <a class="btn pull-right" href="/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/">Read on &rarr;</a>
-    </div>
-
-
-        </article>
-        <hr>
-    
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2014/12/11/moving-from-wordpress-to-github/">Moving from WordPress to Github</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
+<!--more-->
 
 
 
 
+<p> Let&#8217;s take a closer look at the standard Heatmap example first. </p>
 
 
-    <time class="article__date pull-left" datetime="2014-12-11T21:03:59-05:00" pubdate><i class="fa fa-calendar"></i> Dec 11th, 2014</time>
+<p>Go through the example given <a href="https://developers.google.com/maps/documentation/javascript/examples/layer-heatmap" title="Heatmaps examples">here</a>.</p>
 
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/blog/'>blog</a></li>
-            
-                <li><a class='category' href='/blog/categories/github/'>github</a></li>
-            
-                <li><a class='category' href='/blog/categories/hackers/'>hackers</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
+<p>As we see, the following piece of code is responsible for initializing the heat map. It also has a function called changeGradient() which is of interest to us. </p>
 
 
 
 
-    <div class="article__content clearfix">
-        <p><p>
-So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
+<pre>
+<code class="javascript">
 
-<p><p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I&rsquo;m getting into the writing mode again and not to mention that a lot has happened in the past six months&hellip;so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br /></p>
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(37.774546, -122.433523),
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
 
-<p>But not anymore!
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
 
-        <a class="btn pull-right" href="/blog/2014/12/11/moving-from-wordpress-to-github/">Read on &rarr;</a>
-    </div>
+  var pointArray = new google.maps.MVCArray(taxiData);
 
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: pointArray
+  });
 
-        </article>
-        <hr>
-    
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2014/04/25/lets-just-live-for-today/">Let&#8217;s just live for today!</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
+  heatmap.setMap(map);
+}
 
 
-
-
-
-
-    <time class="article__date pull-left" datetime="2014-04-25T18:42:32-04:00" pubdate><i class="fa fa-calendar"></i> Apr 25th, 2014</time>
-
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/musings/'>musings</a></li>
-            
-                <li><a class='category' href='/blog/categories/poem/'>poem</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+</code> 
+</pre>
 
 
 
 
-    <div class="article__content clearfix">
-        <p>I&#8217;m don&#8217;t know the actual source of this poem so can&#8217;t give proper credit for this. If you know where this verse is from, please reach out to me so I can link the source.  </p>
-
-
-
-
-<p><em><br />
-Before the world validates our identity based on race &amp; creed,<br />
-Before they tell us where we belong &amp; which air we ought to breathe,<br />
-For now, for once, let&#8217;s just live for today!</p>
-
-
-<p>Before life drags us apart and tries molding our fate,<br />
+<p>The changeGradient function changes the default gradient values to anything you specify. If you notice, the color is changing from light blue rgba(0, 255, 255, 0) for low density points to Sharp Red rgba(255, 0, 0, 1) as the density increases. 
 </p>
 
 
-<p></em></p>
 
 
-        <a class="btn pull-right" href="/blog/2014/04/25/lets-just-live-for-today/">Read on &rarr;</a>
-    </div>
+<p>What you can simply do is, initiate two different heatmaps, say heatmapPositive (light blue to dark blue) and heatmapNegative (yellow to red) in case you want to show two different heat maps for the positive and negative sentiment tweets. </p>
 
 
-        </article>
-        <hr>
-    
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2014/03/10/mariadb-seconds-behind-issue-fixed/">MariaDB seconds behind issue fixed</a>
-        </h1>
-    
 
-    
-        <div class="article__meta clearfix">
-            
+
+<p>If you want sample code for this, you can find it <a href="https://github.com/BhavdeepSethi/cloudBigData/blob/master/twitterMapSource/twitMap.js" title="Github Link" >here</a>.  If you want to see how this looks, you can check out <a href="https://www.youtube.com/watch?v=9Qv7F_43dOk" >this video</a> which shows the default state and then with the dual heat maps. </p>
+
+
+
+
+<p> If you want to do much more, there is this neat library called <a href="http://www.patrick-wied.at/static/heatmapjs/" title="heatmap.js">heatmap.js</a>. It has bunch of features like adding legends and tool tips, customized maps, etc. 
+</p>
+
+
+
+
+<p> Hope you found this useful. If you&#8217;re aware of any better libraries out there, then Let me know!</p>
 
 
 
 
 
 
-    <time class="article__date pull-left" datetime="2014-03-10T16:28:38-04:00" pubdate><i class="fa fa-calendar"></i> Mar 10th, 2014</time>
+</article>
 
 
+<section id="disqus">
+    <h1 class="disqus__title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/mariadb/'>mariadb</a></li>
-            
-                <li><a class='category' href='/blog/categories/mysql/'>mysql</a></li>
-            
-                <li><a class='category' href='/blog/categories/opensource/'>opensource</a></li>
-            
-                <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
-
-
-
-
-    <p>We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug:
-We had setup maria 10.0.4 for multisource replication. It was replicating from a Percona 5.5 master. When we started replication, Maria was a day behind its master. It was working fine, but we noticed this phenomenon:
-When we execute <code language="sql">show all slaves status</code> consecutively, the &lsquo;seconds_behind_master&rsquo; flips from 0 to XXX and XXX to 0.
-Note: XXX is some positive number.</p>
-
-<p>Reference: <a href="https://mariadb.atlassian.net/browse/MDEV-5114">https://mariadb.atlassian.net/browse/MDEV-5114</a></p>
-
-<p>The fix is deployed in MariaDB 10.0.10.</p>
-
-
-
-        </article>
-        <hr>
-    
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2014/03/02/slash-n-is-back/">Slash n is back!</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
-
-
-
-
-
-
-    <time class="article__date pull-left" datetime="2014-03-02T19:12:36-05:00" pubdate><i class="fa fa-calendar"></i> Mar 2nd, 2014</time>
-
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/blog/'>blog</a></li>
-            
-                <li><a class='category' href='/blog/categories/flipkart/'>flipkart</a></li>
-            
-                <li><a class='category' href='/blog/categories/slashn/'>slashn</a></li>
-            
-                <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
-
-
-
-
-    <div class="article__content clearfix">
-        <p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
-
-
-<p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
-
-
-<p>To make things convenient slash n app is now available in both Android and iOS stores:</p>
-
-
-<p><br /></p>
-
-
-        <a class="btn pull-right" href="/blog/2014/03/02/slash-n-is-back/">Read on &rarr;</a>
-    </div>
-
-
-        </article>
-        <hr>
-    
-
-    <div class="pagination">
-    
-        <a class="btn pull-left" href="/posts/2">&larr; Older</a>
-    
-
-    
-    </div>
 
                 </div>
 
@@ -581,7 +388,10 @@ Note: XXX is some positive number.</p>
     var disqus_shortname = 'deepmusings';
     
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/';
+        var disqus_url = 'http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/';
+        var disqus_script = 'embed.js';
     
     (function () {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

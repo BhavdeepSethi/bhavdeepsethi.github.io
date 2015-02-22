@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title><![CDATA[Category: blog | Deep Musings]]></title>
+    <link href="http://www.deepmusings.com/blog/categories/blog/atom.xml" rel="self"/>
+    <link href="http://www.deepmusings.com/"/>
+    <updated>2015-02-22T16:30:48-05:00</updated>
+    <id>http://www.deepmusings.com/</id>
+    <author>
+        <name><![CDATA[Bhavdeep Sethi]]></name>
+        <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
+      </author>
+    <generator uri="http://octopress.org/">Octopress</generator>
+
+    
+    <entry>
+        <title type="html"><![CDATA[Moving from WordPress to Github]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github/"/>
+        <updated>2014-12-11T21:03:59-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github</id>
+        <content type="html"><![CDATA[<p><p>
+So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
+
+<p><p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I&rsquo;m getting into the writing mode again and not to mention that a lot has happened in the past six months&hellip;so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br /></p>
+
+<p>But not anymore!
+<!--more-->
+I randomly googled &ldquo;<a href="http://goo.gl/02SPK4">blogging platform for coders</a>&rdquo;, went to the HN link from the result and read about Jekyll+Github. And I can&rsquo;t believe I hadn&rsquo;t heard about this for so long!  I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br /></p>
+
+<p>With Octopress into the picture, you do not even have to bother with the blog structure/theme. It took me about half a day to migrate the entire blog. Or whatever was left of it.</p>
+
+<p><p><h3>Why GitHub User Pages are way better than WordPress for your blog?</h3>
+<ul>
+<li>The power of Github! You can add collaborators, markdowns, issue tracking, versioning&hellip;do I need to say more?
+<li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
+<li>You own the code. You decide how the code is going to be rendered. In WordPress(WP), you ended up writing articles and having no control of what is going on behind the scene. It took me three days to get a simple jQuery functionality working with WP.
+<li> You can run your blog locally. Making changes is so much faster. I can work on the blog even when I don&rsquo;t have an internet connection.<br/>
+<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh&#8217;ing into a webserver is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
+<li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
+</ul>
+<br />
+I could go on and on&hellip;but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P</p>
+
+<p><p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" >this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" >This Github Help</a> page will give you steps for setting up a custom domain with your github page. That&rsquo;s it! Seriously. You&rsquo;re done! Hope to see you on this side.</p>
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Slash n is back!]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back/"/>
+        <updated>2014-03-02T19:12:36-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back</id>
+        <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
+
+
+<p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
+
+
+<p>To make things convenient slash n app is now available in both Android and iOS stores:</p>
+
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p><a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
+
+<p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
+
+
+<p>Also, you can go to this <a href="http://slashn.flipkart.net/getapp" title="slash n" target="_blank">link</a> on your smart phone to get the app directly.</p>
+
+
+<p>For more details, visit <a href="http://slashn.flipkart.net/" title="slash n" target="_blank">slash n</a> website. </p>
+
+
+<p>See you there!</p>
+
+
+<p>P.S.: Watch out for my talk on <strong>Know Your Customer (KYC) ~ Deriving User Insights</strong>. Here is the synopsis of the talk: </p>
+
+
+<p><em>How can we customize every customer engagement through event derivations? How can we ensure every user interaction is relevant and drive loyalty and retention through it? Did you know it also enables finding who is a reseller, who is a Frequent shopper at Flipkart and who needs a mailer to be brought back? How do we improve customer support interaction by knowing who is anxious, who is happy and who is an angry repeat caller. Presenting the &#8220;User Insights Platform&#8221; which enables us to dig into 100s of TB of data at Flipkart to derive insights about the user.</em></p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Resolutions 2014!]]></title>
+        <link href="http://www.deepmusings.com/blog/2014/01/12/resolutions-2014/"/>
+        <updated>2014-01-12T19:06:59-05:00</updated>
+        <id>http://www.deepmusings.com/blog/2014/01/12/resolutions-2014</id>
+        <content type="html"><![CDATA[<p>Resolutions. Hard to make, harder to keep. How are your resolutions holding up? Here is a quick update on mine. </p>
+
+
+<p><b>Read More </b><br />
+Leisure:<br />
+Last year I made a resolution of reading at least 25 books and thanks to Isaac Asimov, I was able to reach this target.<br />
+With the amount of tech blogs I read, increasing this number seems difficult right now. So the plan of reading 25 stays! I still intend to buy a lot more to add to my collection.<br />
+Technology:<br />
+Thanks to last year&#8217;s resolution, I&#8217;ve got into a habit of going through HackerNews everyday. So I&#8217;m decently updated with technology. Intend to continue doing this. </p>
+
+
+<p><b>Write More</b></p>
+
+
+<p><br /></p>
+
+<!--more-->
+
+
+<p>And this doesn&rsquo;t including coding! I did a lot of writing while preparing my SoP for the MS applications and I enjoyed it a lot. And I could see a noticeable difference when I had to fill appraisal forms. In Flipkart, we have a very comprehensive appraisal process. A major part of this process is writing self and peer reviews. My earlier self reviews were generally very terse. Luckily my work spoke for me and I had no issues whatsoever. However, after working on the SoP for 2-3 months, writing the self review was piece of cake this time. Sat down late night and finished the entire review process in 4 hours! That was when I decided I&rsquo;m going to write more regularly. It really brings a clarity in thought. While I would love to follow the 1000 words per day formula, I want to keep a realistic target for this. I am keeping a target of 1000 words per week for the initial three months and then will evaluate how to continue going forward.</p>
+
+<p><b>Watch More</b><br />
+Videos. I absolutely love the Online Courses (MOOC). From statistics, gamification, entrepreneurship to psychology, I follow a lot of these courses. I don&#8217;t have a target for this because sometimes I end up doing 3-4 of these together but planning to concentrate more on Data Analysis, Big Data and Machine Learning courses this year. </p>
+
+
+<p><b>Exercise</b><br />
+7-min exercise to the rescue! <span id="more-133"></span> I&#8217;ve gained a lot from these and would like to continue follow this routine. It has helped me when playing soccer as well. For those of you who are not aware of this routine, here is a brief description: </p>
+
+
+<p>Most of us don&#8217;t have time (the will rather) for regular workout. Here is a 7 minute workout that requires only a wall and a chair. Hopefully, giving only 7 minutes in a day will be an incentive to try this out.<br />
+Here is a site which will help you do the exercises in order:<br />
+<a href="http://7-min.com/"> Seven Minute Workout Timer</a> </p>
+
+
+<p>Here is a post from LifeHacker for checking the correct form of doing these exercises:<br />
+<a hred="http://lifehacker.com/these-12-videos-show-the-proper-form-for-a-7-minute-ful-499199366">These 12 Videos Show the Proper Form for a 7-Minute Full Workout</a> </p>
+
+
+<p><b>Miscellaneous: </b></p>
+
+
+<p>Learn a new language: I started out with Spanish last year, followed it up for a week and then got busy with work. I hope to gain mastery of at least basic Spanish that will help me to communicate easily. </p>
+
+
+<p>Open Source: My contributions to open source have been limited to submitting issues in MariaDB. Time to take this to the next level and actually contributing to the community. Whether it will be MariaDB or some Apache project, I still have to still finalize on this. </p>
+
+
+<p>Travel: Last year, I managed trips to all parts of India. Starting with Leh (north) in Jan, Goa (west) in March, Pondicherry (south) in August and ending with Sikkim (East) in December!<br />
+I intended to take a sabbatical for a month this year and go backpacking. The plan is to cover as many states in India as possible. Hopefully, I&#8217;ll cancel most of the places from <a href="http://www.thrillophilia.com/blog/50-places-to-visit-in-india-before-you-turn-30/">this list</a>!</p>
+
+
+<p>That&#8217;s it for now. Fingers crossed! Will update this post when I add anymore to the list.  Let me know what are your resolutions for 2014.</p>
+
+
+<p>Oh, and wishing you a Happy and Prosperous New Year! May all of you spend the year doing what you love to do the most! :) </p>
+
+]]></content>
+    </entry>
+    
+    <entry>
+        <title type="html"><![CDATA[Let there be light!]]></title>
+        <link href="http://www.deepmusings.com/blog/2013/07/25/let-there-be-light/"/>
+        <updated>2013-07-25T18:28:54-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2013/07/25/let-there-be-light</id>
+        <content type="html"><![CDATA[<p>Hello Bloggers!</p>
+
+
+<p>Let me start by telling you what took so long for the first post to come up! After registering with GoDaddy for the domain, I&#8217;ve been waiting for my friend Shailesh (An awesome designer btw) to give me a wicked cool custom theme. You don&#8217;t expect me to start with a drab page, right? But alas, here we are. </p>
+
+
+
+
+<!--more-->
+
+
+<p>He got busy with other things and I&rsquo;m stuck with some random theme for now. I&rsquo;m pretty decent with front-end myself so if this post can&rsquo;t prod him enough to give me a theme soon, then I may take a crack at it myself.</p>
+
+<p>Anyway&#8230;So, what can you expect from this blog? Bunch of randomness. Right from plebeian rants to life changing experiences, some awesome technology I&#8217;ve come across to crazy hacks that I&#8217;ve seen, I&#8217;ll try and note it down as much as possible. Hopefully, I&#8217;ll be able to connect with some of you with what I&#8217;ve to say. For others, I&#8217;m all in for a good debate.</p>
+
+
+<p>You can expect some content rolling in as soon as I setup some basic pages here. I&#8217;m still finalizing on the hosting service for this blog. Signing off for now.</p>
+
+
+<p>Till we meet again.</p>
+
+]]></content>
+    </entry>
+    
+</feed>
