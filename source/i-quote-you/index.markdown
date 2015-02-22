@@ -5,6 +5,7 @@ date: 2014-12-11 13:10
 comments: true
 sharing: true
 footer: true
+sidebar: false
 ---
 
 <p>I love collecting quotes. Whenever I read something profound, I make it a point to note it down. These quotes may be from famous people, image-quotes from FB, articles I&#8217;ve read, movies or just from day to day conversations. I&#8217;ve tried my best to credit the correct/original author for most of these but if I&#8217;m wrong, do point it out.</p>
@@ -19,7 +20,7 @@ footer: true
 <li><a id="recentLink" href="#newest">Newest</a></li>
 </ul>
 <div class="tab_container"><!-- All Quotes Start --></p>
-<div class="tab_content hide" id="favorites"><!-- Favorites Start --></p>
+<div class="tab_content" id="favorites"><!-- Favorites Start --></p>
 <font color="#1F7DE0"><h3>Favorites</h3></font>
 <blockquote>
 <hr width="100%" />
@@ -53,7 +54,7 @@ footer: true
 <p><span class="noColor"><a href="#quotesLinkGroup" >Click here to go the top of the page</a></span></p>
 </div>
 <p><!-- Favorites End --></p>
-<div class="tab_content hide" id="inspirational"><!-- Inspirational Start --></p>
+<div class="tab_content" id="inspirational"><!-- Inspirational Start --></p>
 <font color="#1F7DE0"><h3>Inspirational</h3></font>
 <blockquote>
 <hr width="100%" />
@@ -131,7 +132,7 @@ footer: true
 <p><span class="noColor"><a href="#quotesLinkGroup" >Click here to go the top of the page</a></span></p>
 </div>
 <p><!-- Inspirational Ends --></p>
-<div class="tab_content hide" id="humorous"><!-- Humorous Start --><br />
+<div class="tab_content" id="humorous"><!-- Humorous Start --><br />
 <font color="#1F7DE0"><h3>Humorous</h3></font>
 <span class="noColor">Calvin and Hobbes definitely deserve their own space. While the sayings make much more sense in the context of the comic, there are some gems that you just have to mention!</span></p>
 <blockquote>
@@ -183,7 +184,7 @@ footer: true
 <p><span class="noColor"><a href="#quotesLinkGroup" >Click here to go the top of the page</a></span></p>
 </div>
 <p><!-- Humorous End -->	</p>
-<div class="tab_content hide" id="entrepreneurship"><!-- Entrepreneurship Start --></p>
+<div class="tab_content" id="entrepreneurship"><!-- Entrepreneurship Start --></p>
 <font color="#1F7DE0"><h3>Entrepreneurship</h3></font>
 <blockquote>
 <hr width="100%" />
@@ -236,7 +237,7 @@ footer: true
 <p><span class="noColor"><a href="#quotesLinkGroup" >Click here to go the top of the page</a></span></p>
 </div>
 <p><!-- Entrepreneurship End --></p>
-<div class="tab_content hide" id="general"><!-- General Start --></p>
+<div class="tab_content" id="general"><!-- General Start --></p>
 <font color="#1F7DE0"><h3>General</h3></font>
 <blockquote>
 <hr width="100%" />
@@ -379,7 +380,7 @@ footer: true
 <p><span class="noColor"><a href="#quotesLinkGroup" >Click here to go the top of the page</a></span></p>
 </div>
 <p> <!-- General Ends --></p>
-<div class="tab_content hide" id="newest"><!-- Recently Added Started --><br />
+<div class="tab_content" id="newest"><!-- Recently Added Started --><br />
 <font color="#1F7DE0"><h3>Recently Added</h3></font>
 <span class="noColor">This section will include the most recent additions.<br />
 	Last Updated: 18<sup>th</sup> Aug, 2013. </span></p>

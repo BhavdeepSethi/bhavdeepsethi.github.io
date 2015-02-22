@@ -52,7 +52,7 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -61,17 +61,43 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # page_asides:
 
 
-social:
- title: "Social Links"
- github:
-  user: "BhavdeepSethi"
- facebook:
-  user: "bhavdeep.sethi"
- twitter:
-  user: "BhavdeepSethi"
- linkedin: bhavdeepsethi
- pinterest: "bhavdeepsethi"  
- googleplus: 116973437437734655008
+# Oscailte Theme Settings
+oscailte:
+    hire: # The "Available for Hire" widget
+        visible:
+            footer: false
+            sidebar: false
+        footer-cols: 6 # Number of columns available for the footer component, max 12
+        available: false # Whether or not you're available for hire
+        vibrant: false # Makes the widget much more noticeable
+        message: "Available for new opportunities"
+    social:
+        visible: true
+        title: # Defaults to "Follow me!" if not present
+        adn: # App.net
+        coinbase:
+        dribbble:
+        facebook:
+            user: bhavdeep.sethi
+            app_id: # For enabling Open Graph metadata
+        github:
+            user: BhavdeepSethi
+            show_profile_link: true
+        googleplus: 116973437437734655008
+        hackernews: BhavdeepSethi
+        keybase:
+        linkedin: bhavdeepsethi
+        pinterest: bhavdeepsethi
+        reddit:
+        stackoverflow:
+        twitter:
+            user: BhavdeepSethi
+            widget: # Shows the Recent Tweets widget in sidebar
+                is_shown: "true"
+                show_profile_link: "true"
+                widget_id: "569603851255574528"
+        youtube:
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #
