@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: slashn | Deep Musings]]></title>
-  <link href="http://bhavdeepsethi.github.io/blog/categories/slashn/atom.xml" rel="self"/>
-  <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2015-02-21T17:17:01-05:00</updated>
-  <id>http://bhavdeepsethi.github.io/</id>
+  <link href="http://www.deepmusings.com/blog/categories/slashn/atom.xml" rel="self"/>
+  <link href="http://www.deepmusings.com/"/>
+  <updated>2015-02-22T14:45:22-05:00</updated>
+  <id>http://www.deepmusings.com/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
     <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Slash n is back!]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back/"/>
+    <link href="http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back/"/>
     <updated>2014-03-02T19:12:36-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back</id>
+    <id>http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back</id>
     <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
 
 

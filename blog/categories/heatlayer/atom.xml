@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: heatlayer | Deep Musings]]></title>
-  <link href="http://bhavdeepsethi.github.io/blog/categories/heatlayer/atom.xml" rel="self"/>
-  <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2015-02-21T17:17:01-05:00</updated>
-  <id>http://bhavdeepsethi.github.io/</id>
+  <link href="http://www.deepmusings.com/blog/categories/heatlayer/atom.xml" rel="self"/>
+  <link href="http://www.deepmusings.com/"/>
+  <updated>2015-02-22T14:45:22-05:00</updated>
+  <id>http://www.deepmusings.com/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
     <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using Multiple Heat Layers with Google Maps]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
+    <link href="http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
     <updated>2015-01-09T21:03:17-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
+    <id>http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
     <content type="html"><![CDATA[<p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
 
 

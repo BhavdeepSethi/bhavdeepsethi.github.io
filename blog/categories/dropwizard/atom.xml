@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: dropwizard | Deep Musings]]></title>
-  <link href="http://bhavdeepsethi.github.io/blog/categories/dropwizard/atom.xml" rel="self"/>
-  <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2015-02-21T17:17:01-05:00</updated>
-  <id>http://bhavdeepsethi.github.io/</id>
+  <link href="http://www.deepmusings.com/blog/categories/dropwizard/atom.xml" rel="self"/>
+  <link href="http://www.deepmusings.com/"/>
+  <updated>2015-02-22T14:45:22-05:00</updated>
+  <id>http://www.deepmusings.com/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
     <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Serving static content with Dropwizard]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
+    <link href="http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
     <updated>2014-02-13T19:22:37-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/13/serving-static-content-with-dropwizard</id>
+    <id>http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard</id>
     <content type="html"><![CDATA[<p>Dropwizard, in its own words is a &#8220;Java framework for developing ops-friendly, high-performance, RESTful web services&#8221;.</p>
 
 

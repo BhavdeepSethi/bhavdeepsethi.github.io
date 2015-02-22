@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Deep Musings]]></title>
-  <link href="http://bhavdeepsethi.github.io/atom.xml" rel="self"/>
-  <link href="http://bhavdeepsethi.github.io/"/>
-  <updated>2015-02-21T17:17:01-05:00</updated>
-  <id>http://bhavdeepsethi.github.io/</id>
+  <link href="http://www.deepmusings.com/atom.xml" rel="self"/>
+  <link href="http://www.deepmusings.com/"/>
+  <updated>2015-02-22T14:45:22-05:00</updated>
+  <id>http://www.deepmusings.com/</id>
   <author>
     <name><![CDATA[Bhavdeep Sethi]]></name>
     <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using Multiple Heat Layers with Google Maps]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
+    <link href="http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
     <updated>2015-01-09T21:03:17-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
+    <id>http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
     <content type="html"><![CDATA[<p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
 
 
@@ -125,9 +125,9 @@ function changeGradient() {
   
   <entry>
     <title type="html"><![CDATA[Moving from WordPress to Github]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/12/11/moving-from-wordpress-to-github/"/>
+    <link href="http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github/"/>
     <updated>2014-12-11T21:03:59-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/12/11/moving-from-wordpress-to-github</id>
+    <id>http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github</id>
     <content type="html"><![CDATA[<p><p>
 So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
 
@@ -157,9 +157,9 @@ I could go on and on&hellip;but you get the picture. I am so glad I moved to thi
   
   <entry>
     <title type="html"><![CDATA[Let's just live for today!]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/04/25/lets-just-live-for-today/"/>
+    <link href="http://www.deepmusings.com/blog/2014/04/25/lets-just-live-for-today/"/>
     <updated>2014-04-25T18:42:32-04:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/04/25/lets-just-live-for-today</id>
+    <id>http://www.deepmusings.com/blog/2014/04/25/lets-just-live-for-today</id>
     <content type="html"><![CDATA[<p>I&#8217;m don&#8217;t know the actual source of this poem so can&#8217;t give proper credit for this. If you know where this verse is from, please reach out to me so I can link the source.  </p>
 
 
@@ -199,9 +199,9 @@ For now, for once, let&#8217;s just live for today!<br />
   
   <entry>
     <title type="html"><![CDATA[MariaDB seconds behind issue fixed]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/03/10/mariadb-seconds-behind-issue-fixed/"/>
+    <link href="http://www.deepmusings.com/blog/2014/03/10/mariadb-seconds-behind-issue-fixed/"/>
     <updated>2014-03-10T16:28:38-04:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/03/10/mariadb-seconds-behind-issue-fixed</id>
+    <id>http://www.deepmusings.com/blog/2014/03/10/mariadb-seconds-behind-issue-fixed</id>
     <content type="html"><![CDATA[<p>We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug:
 We had setup maria 10.0.4 for multisource replication. It was replicating from a Percona 5.5 master. When we started replication, Maria was a day behind its master. It was working fine, but we noticed this phenomenon:
 When we execute <code language="sql">show all slaves status</code> consecutively, the &lsquo;seconds_behind_master&rsquo; flips from 0 to XXX and XXX to 0.
@@ -215,9 +215,9 @@ Note: XXX is some positive number.</p>
   
   <entry>
     <title type="html"><![CDATA[Slash n is back!]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back/"/>
+    <link href="http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back/"/>
     <updated>2014-03-02T19:12:36-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/03/02/slash-n-is-back</id>
+    <id>http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back</id>
     <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
 
 
@@ -256,9 +256,9 @@ Note: XXX is some positive number.</p>
   
   <entry>
     <title type="html"><![CDATA[Three most significant things you have learnt till date]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date/"/>
+    <link href="http://www.deepmusings.com/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date/"/>
     <updated>2014-02-22T18:27:28-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date</id>
+    <id>http://www.deepmusings.com/blog/2014/02/22/three-most-significant-things-you-have-learnt-till-date</id>
     <content type="html"><![CDATA[<h3>Write down the three most significant things you have learnt till date.</h3>
 
 
@@ -335,9 +335,9 @@ Considering we spend one third of our life working, make sure you love what you&
   
   <entry>
     <title type="html"><![CDATA[Serving static content with Dropwizard]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
+    <link href="http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
     <updated>2014-02-13T19:22:37-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/13/serving-static-content-with-dropwizard</id>
+    <id>http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard</id>
     <content type="html"><![CDATA[<p>Dropwizard, in its own words is a &#8220;Java framework for developing ops-friendly, high-performance, RESTful web services&#8221;.</p>
 
 
@@ -423,9 +423,9 @@ Many people find it difficult to use this plugin because of lack of proper docum
   
   <entry>
     <title type="html"><![CDATA[MySQL Partial Replication]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/08/mysql-partial-replication/"/>
+    <link href="http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication/"/>
     <updated>2014-02-08T18:36:09-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/08/mysql-partial-replication</id>
+    <id>http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication</id>
     <content type="html"><![CDATA[<p>A couple of folks have asked me to elaborate more on partial replication.<br />
 What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? </p>
 
@@ -491,9 +491,9 @@ Mapping this to the &#8220;show slave status&#8221; command, the only parameters
   
   <entry>
     <title type="html"><![CDATA[Mysql Replication from an existing slave]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
+    <link href="http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
     <updated>2014-02-01T18:59:25-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
+    <id>http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
     <content type="html"><![CDATA[<p>So you want to add another slave to an existing mysql replication environment? </p>
 
 
@@ -578,9 +578,9 @@ You can use this for full replication as well as long as you&#8217;re using Inno
   
   <entry>
     <title type="html"><![CDATA[Resolutions 2014!]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2014/01/12/resolutions-2014/"/>
+    <link href="http://www.deepmusings.com/blog/2014/01/12/resolutions-2014/"/>
     <updated>2014-01-12T19:06:59-05:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2014/01/12/resolutions-2014</id>
+    <id>http://www.deepmusings.com/blog/2014/01/12/resolutions-2014</id>
     <content type="html"><![CDATA[<p>Resolutions. Hard to make, harder to keep. How are your resolutions holding up? Here is a quick update on mine. </p>
 
 
@@ -642,9 +642,9 @@ I intended to take a sabbatical for a month this year and go backpacking. The pl
   
   <entry>
     <title type="html"><![CDATA[Some Inspiring Commencement Speeches]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2013/08/17/some-inspiring-commencement-speeches/"/>
+    <link href="http://www.deepmusings.com/blog/2013/08/17/some-inspiring-commencement-speeches/"/>
     <updated>2013-08-17T20:30:13-04:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2013/08/17/some-inspiring-commencement-speeches</id>
+    <id>http://www.deepmusings.com/blog/2013/08/17/some-inspiring-commencement-speeches</id>
     <content type="html"><![CDATA[<h3>David Foster Wallace 2005 Kenyon College Commencement Speech - This is Water.</h3>
 
 
@@ -816,9 +816,9 @@ We are bound to touch other people&#8217;s lives simply by existing. So let ua u
   
   <entry>
     <title type="html"><![CDATA[Let there be light!]]></title>
-    <link href="http://bhavdeepsethi.github.io/blog/2013/07/25/let-there-be-light/"/>
+    <link href="http://www.deepmusings.com/blog/2013/07/25/let-there-be-light/"/>
     <updated>2013-07-25T18:28:54-04:00</updated>
-    <id>http://bhavdeepsethi.github.io/blog/2013/07/25/let-there-be-light</id>
+    <id>http://www.deepmusings.com/blog/2013/07/25/let-there-be-light</id>
     <content type="html"><![CDATA[<p>Hello Bloggers!</p>
 
 
