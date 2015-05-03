@@ -9,7 +9,7 @@ categories: [tech, bigdata, nosql, cloud]
 
 
 <p>
-One of courses that I took in Columbia with a really good course <i>content</i> was, Cloud and Big Data. 
+One of courses that I took in Columbia, with a really good course <i><b>content</b></i>, was Cloud and Big Data. 
 I took the course in Fall '14 and TA'ed it in Spring '15. 
 Every week, two papers were released that the students were supposed to read and submit a short summary about. 
 </p>
