@@ -2,7 +2,7 @@
 layout: post
 title: "My Personal Iron Blogger"
 date: 2015-04-24 16:28:52 -0400
-date_formatted: April 25, 2013
+date_formatted: April 25, 2015
 comments: true
 categories: [personal, blog]
 ---
