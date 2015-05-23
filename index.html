@@ -85,6 +85,102 @@
             <header class="article__header">
     
         <h1 class="h2 article__title">
+            <a href="/blog/2015/05/23/deep-learning/">Deep Learning</a>
+        </h1>
+    
+
+    
+        <div class="article__meta clearfix">
+            
+
+
+
+
+
+
+    <time class="article__date pull-left" datetime="2015-05-23T12:25:57-04:00" pubdate><i class="fa fa-calendar"></i> May 23rd, 2015</time>
+
+
+
+
+            
+
+    <div class="article__tags pull-left">
+        <i class="fa fa-tags"></i>
+        <ul class="unstyled">
+        
+            
+                <li><a class='category' href='/blog/categories/blog/'>blog</a></li>
+            
+                <li><a class='category' href='/blog/categories/deep-learning/'>deep learning</a></li>
+            
+                <li><a class='category' href='/blog/categories/machine-learning/'>machine learning</a></li>
+            
+                <li><a class='category' href='/blog/categories/personal/'>personal</a></li>
+            
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+    
+</header>
+
+
+
+
+    <p>
+As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/4772/">COMS W4772: Advance Machine Learning</a>, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques.  The idea was to study and compare various adaptive learning methods on different datasets and evaluate the pros and cons of each.
+</p>
+
+
+
+
+<p>
+We kept the Stochastic Gradient Descent (SGD) as the baseline and compared it with Momentum, Nestorov&#8217;s Accelerated Gradient (NAG), AdaGrad, and AdaDelta on the Digits (digit image data for OCR task), 20newsgroup (document collection) and Labeled Faces  in the Wild (LFW) (face image data) datasets.
+</p>
+
+
+
+
+<p>You can read the final report <a href="assets/AML_Project_Report.pdf" target="_blank">here</a>! 
+</p>
+
+
+
+
+<p>Also, as part of another research project, I was studying the effects of the different hyper-parameters on learning in a deep neural network. Using synthetic data, I was evaluating the role of learning rate, batch size, activation functions, hidden units, parameter initialization, learning methods in the working of a neural network. I then ran experiments on 20newsgroup data set to compare the final results as compared to SVM and Naive Bayes.</p>
+
+
+
+
+<p>A TL;DR version is as follows: 
+    <ul>
+        <li> Too high learning rate causes divergence; too low causes to learn very slowly. Try various values to see which gives you faster convergence. A better approach is to use adaptive learning (explained later).
+        <li> Too high batch size (behaves like standard gradient descent) is computationally slow as it processes many training examples for each update. Too low batch size (behaves like online learning) learns much faster but affected by noise. A moderate value (10%-30% of data size) works well. 
+        <li> Use Rectified Linear Units (ReLUs) or tanh functions.
+        <li> Increasing the hidden units let&#8217;s you learn complex functions. Increasing too much may cause over-fitting. Choose a value using a validation set. 
+        <li> Simplest approach is to initiallize randomly using a Gaussian distribution with mean 0 and standard deviation 1. 
+        <li> Use adaptive learning techniques like AdaGrad, AdaDelta, etc. to let learning rate vary per dimension. This is very important for deep neural nets since the magnitude of gradients differ a lot between different layers. Eliminates the need of a global learning rate.  
+    </ul>
+</br>
+
+The longer version can be found <a href="http://www.deepmusings.com/assets/DeepLearning_Project.pdf" target="_blank">here!</a>
+</p>
+
+
+
+
+        </article>
+        <hr>
+    
+        
+        <article class="article article--index">
+            <header class="article__header">
+    
+        <h1 class="h2 article__title">
             <a href="/blog/2015/05/10/my-internship-experience/">My Internship Experience</a>
         </h1>
     
@@ -363,79 +459,6 @@ Hmm&#8230;still need to come up with some sort of penalty for missing a post tho
         </article>
         <hr>
     
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/">Using Multiple Heat Layers with Google Maps</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
-
-
-
-
-
-
-    <time class="article__date pull-left" datetime="2015-01-09T21:03:17-05:00" pubdate><i class="fa fa-calendar"></i> Jan 9th, 2015</time>
-
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/googlemaps/'>googlemaps</a></li>
-            
-                <li><a class='category' href='/blog/categories/heatlayer/'>heatlayer</a></li>
-            
-                <li><a class='category' href='/blog/categories/javascript/'>javascript</a></li>
-            
-                <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
-
-
-
-
-    <div class="article__content clearfix">
-        <p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
-
-
-<p> Now, using Heatmaps with Google Maps is pretty trivial. Google Maps has pretty decent documentation along with working examples. </p>
-
-
-
-
-<p>But how do we do it when we want to show muliple heat maps working independently on the same Google Map?</p>
-
-
-
-
-
-        <a class="btn pull-right" href="/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/">Read on &rarr;</a>
-    </div>
-
-
-        </article>
-        <hr>
-    
 
     <div class="pagination">
     
@@ -483,6 +506,10 @@ Hmm&#8230;still need to come up with some sort of penalty for missing a post tho
     <ul class="divided">
         
         <li class="post">
+            <a href="/blog/2015/05/23/deep-learning/">Deep Learning</a>
+        </li>
+        
+        <li class="post">
             <a href="/blog/2015/05/10/my-internship-experience/">My Internship Experience</a>
         </li>
         
@@ -496,10 +523,6 @@ Hmm&#8230;still need to come up with some sort of penalty for missing a post tho
         
         <li class="post">
             <a href="/blog/2015/03/16/tryst-with-destiny/">Tryst With Destiny</a>
-        </li>
-        
-        <li class="post">
-            <a href="/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/">Using Multiple Heat Layers with Google Maps</a>
         </li>
         
     </ul>

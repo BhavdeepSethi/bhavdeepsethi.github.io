@@ -4,7 +4,7 @@
     <title><![CDATA[Category: blog | Deep Musings]]></title>
     <link href="http://www.deepmusings.com/blog/categories/blog/atom.xml" rel="self"/>
     <link href="http://www.deepmusings.com/"/>
-    <updated>2015-05-10T23:34:53-04:00</updated>
+    <updated>2015-05-23T13:07:15-04:00</updated>
     <id>http://www.deepmusings.com/</id>
     <author>
         <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -12,6 +12,53 @@
       </author>
     <generator uri="http://octopress.org/">Octopress</generator>
 
+    
+    <entry>
+        <title type="html"><![CDATA[Deep Learning]]></title>
+        <link href="http://www.deepmusings.com/blog/2015/05/23/deep-learning/"/>
+        <updated>2015-05-23T12:25:57-04:00</updated>
+        <id>http://www.deepmusings.com/blog/2015/05/23/deep-learning</id>
+        <content type="html"><![CDATA[<p>
+As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/4772/">COMS W4772: Advance Machine Learning</a>, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques.  The idea was to study and compare various adaptive learning methods on different datasets and evaluate the pros and cons of each.
+</p>
+
+
+
+
+<p>
+We kept the Stochastic Gradient Descent (SGD) as the baseline and compared it with Momentum, Nestorov&#8217;s Accelerated Gradient (NAG), AdaGrad, and AdaDelta on the Digits (digit image data for OCR task), 20newsgroup (document collection) and Labeled Faces  in the Wild (LFW) (face image data) datasets.
+</p>
+
+
+
+
+<p>You can read the final report <a href="assets/AML_Project_Report.pdf" target="_blank">here</a>! 
+</p>
+
+
+
+
+<p>Also, as part of another research project, I was studying the effects of the different hyper-parameters on learning in a deep neural network. Using synthetic data, I was evaluating the role of learning rate, batch size, activation functions, hidden units, parameter initialization, learning methods in the working of a neural network. I then ran experiments on 20newsgroup data set to compare the final results as compared to SVM and Naive Bayes.</p>
+
+
+
+
+<p>A TL;DR version is as follows: 
+    <ul>
+        <li> Too high learning rate causes divergence; too low causes to learn very slowly. Try various values to see which gives you faster convergence. A better approach is to use adaptive learning (explained later).
+        <li> Too high batch size (behaves like standard gradient descent) is computationally slow as it processes many training examples for each update. Too low batch size (behaves like online learning) learns much faster but affected by noise. A moderate value (10%-30% of data size) works well. 
+        <li> Use Rectified Linear Units (ReLUs) or tanh functions.
+        <li> Increasing the hidden units let&#8217;s you learn complex functions. Increasing too much may cause over-fitting. Choose a value using a validation set. 
+        <li> Simplest approach is to initiallize randomly using a Gaussian distribution with mean 0 and standard deviation 1. 
+        <li> Use adaptive learning techniques like AdaGrad, AdaDelta, etc. to let learning rate vary per dimension. This is very important for deep neural nets since the magnitude of gradients differ a lot between different layers. Eliminates the need of a global learning rate.  
+    </ul>
+</br>
+
+The longer version can be found <a href="http://www.deepmusings.com/assets/DeepLearning_Project.pdf" target="_blank">here!</a>
+</p>
+
+]]></content>
+    </entry>
     
     <entry>
         <title type="html"><![CDATA[My Internship Experience]]></title>
@@ -174,47 +221,6 @@ I randomly googled &ldquo;<a href="http://goo.gl/02SPK4">blogging platform for c
 I could go on and on&hellip;but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P</p>
 
 <p><p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes" >this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/" >This Github Help</a> page will give you steps for setting up a custom domain with your github page. That&rsquo;s it! Seriously. You&rsquo;re done! Hope to see you on this side.</p>
-]]></content>
-    </entry>
-    
-    <entry>
-        <title type="html"><![CDATA[Slash n is back!]]></title>
-        <link href="http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back/"/>
-        <updated>2014-03-02T19:12:36-05:00</updated>
-        <id>http://www.deepmusings.com/blog/2014/03/02/slash-n-is-back</id>
-        <content type="html"><![CDATA[<p>Mark your calendar, folks. Come March 7, 2014, Flipkart&#8217;s technology conference is back and it&#8217;s bigger than ever. This year’s slash n theme is <strong>‘Intelligence @ Scale’</strong> and we&#8217;ve got some amazing talks lined up. </p>
-
-
-<p>The event is being hosted at the Indian Institute of Science, Bangalore. </p>
-
-
-<p>To make things convenient slash n app is now available in both Android and iOS stores:</p>
-
-
-<p><br /></p>
-
-<!--more-->
-
-
-<p><a href="https://play.google.com/store/apps/details?id=com.flipkart.slashn" title="slash n" target="_blank"> <img src="http://www.deepmusings.com/images/playstore.png" alt="slashn" /></a></p>
-
-<p><a href="https://itunes.apple.com/us/app/slash-n/id827062477" title="slash n" target="_blank"><img src="http://www.deepmusings.com/images/apple.png" alt="slash n" /></a> </p>
-
-
-<p>Also, you can go to this <a href="http://slashn.flipkart.net/getapp" title="slash n" target="_blank">link</a> on your smart phone to get the app directly.</p>
-
-
-<p>For more details, visit <a href="http://slashn.flipkart.net/" title="slash n" target="_blank">slash n</a> website. </p>
-
-
-<p>See you there!</p>
-
-
-<p>P.S.: Watch out for my talk on <strong>Know Your Customer (KYC) ~ Deriving User Insights</strong>. Here is the synopsis of the talk: </p>
-
-
-<p><em>How can we customize every customer engagement through event derivations? How can we ensure every user interaction is relevant and drive loyalty and retention through it? Did you know it also enables finding who is a reseller, who is a Frequent shopper at Flipkart and who needs a mailer to be brought back? How do we improve customer support interaction by knowing who is anxious, who is happy and who is an angry repeat caller. Presenting the &#8220;User Insights Platform&#8221; which enables us to dig into 100s of TB of data at Flipkart to derive insights about the user.</em></p>
-
 ]]></content>
     </entry>
     

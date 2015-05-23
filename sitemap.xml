@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.deepmusings.com/blog/2015/05/23/deep-learning/</loc>
+    <lastmod>2015-05-23T12:25:57-04:00</lastmod>
+  </url>
+  <url>
     <loc>http://www.deepmusings.com/blog/2015/05/10/my-internship-experience/</loc>
     <lastmod>2015-05-10T20:05:12-04:00</lastmod>
   </url>
@@ -66,34 +70,34 @@
   </url>
   <url>
     <loc>http://www.deepmusings.com/blog/archives/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/blog/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/i-quote-you/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/about/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/precious/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/projects/</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
   <url>
     <loc>http://www.deepmusings.com/indexOld.html</loc>
-    <lastmod>2015-05-10T23:34:53-04:00</lastmod>
+    <lastmod>2015-05-23T13:07:15-04:00</lastmod>
   </url>
 </urlset>
