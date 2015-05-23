@@ -4,7 +4,7 @@
     <title><![CDATA[Category: machine learning | Deep Musings]]></title>
     <link href="http://www.deepmusings.com/blog/categories/machine-learning/atom.xml" rel="self"/>
     <link href="http://www.deepmusings.com/"/>
-    <updated>2015-05-23T13:12:08-04:00</updated>
+    <updated>2015-05-23T13:16:08-04:00</updated>
     <id>http://www.deepmusings.com/</id>
     <author>
         <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -19,7 +19,7 @@
         <updated>2015-05-23T12:25:57-04:00</updated>
         <id>http://www.deepmusings.com/blog/2015/05/23/deep-learning</id>
         <content type="html"><![CDATA[<p>
-As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/4772/" targer="_blank">COMS W4772: Advance Machine Learning</a>, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques.  The idea was to study and compare various adaptive learning methods on different datasets and evaluate the pros and cons of each.
+As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/4772/" target="_blank">COMS W4772: Advance Machine Learning</a>, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques.  The idea was to study and compare various adaptive learning methods on different datasets and evaluate the pros and cons of each.
 </p>
 
 
