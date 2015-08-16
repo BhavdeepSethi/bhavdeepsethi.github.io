@@ -176,21 +176,12 @@
     <loc>http://www.deepmusings.com/blog/categories/deep-learning/</loc>
   </url>
   <url>
-    <loc>http://www.deepmusings.com/blog/categories/git/</loc>
-  </url>
-  <url>
     <loc>http://www.deepmusings.com/blog/categories/repo/</loc>
   </url>
   <url>
+    <loc>http://www.deepmusings.com/blog/categories/vcs/</loc>
+  </url>
+  <url>
     <loc>http://www.deepmusings.com/blog/categories/spark/</loc>
-  </url>
-  <url>
-    <loc>http://www.deepmusings.com/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://www.deepmusings.com/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://www.deepmusings.com/posts/4/</loc>
   </url>
 </urlset>

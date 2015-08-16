@@ -153,7 +153,7 @@ I&rsquo;ve played with Spark a lot over the last month. Here are some of the thi
             <header class="article__header">
     
         <h1 class="h2 article__title">
-            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Single Repo vs Multiple Repos</a>
+            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Monolithic Repo vs Micro Repos</a>
         </h1>
     
 
@@ -178,11 +178,11 @@ I&rsquo;ve played with Spark a lot over the last month. Here are some of the thi
         <ul class="unstyled">
         
             
-                <li><a class='category' href='/blog/categories/git/'>git</a></li>
-            
                 <li><a class='category' href='/blog/categories/repo/'>repo</a></li>
             
                 <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
+            
+                <li><a class='category' href='/blog/categories/vcs/'>vcs</a></li>
             
             
         </ul>
@@ -197,38 +197,15 @@ I&rsquo;ve played with Spark a lot over the last month. Here are some of the thi
 
 
 
-    <p>
+    <div class="article__content clearfix">
+        <p>
 
-Recently, I experienced working with single repo which had the entire codebase. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own git repository. I guess there are pros and cons of each method. 
+Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own repository. I guess there are pros and cons of each method. 
 
-In the single repo method, 
 Some of the points in favor of the single codebase approach I’ve heard are: 
-<ul>
-    <li>
-you don’t have to worry about versioning. You end up having a single version for your product. This helps communications with QA, clients and managers. Since everyone has to pull in the same changes, everyone has access to the same thrift sources as well. 
-    <li> Increased collaboration. Since, you have access to the entire codebase, you can look/learn/contribute to the code written by other teams as well. 
-    <li> Reduces code duplication. Code discovery is much easier and reduces the amount of code duplicated across teams. 
-<ul>
 
-
-
-I personally prefer working with seperate repos. It&#8217;s a lot cleaner and for me, it symobilizes true service oriented architecture. Considering most of the time I&#8217;ll be developing on my local machine, I need that enviornment to be super fast. Yet, I don&#8217;t think there is a clear winner. Having a good build tool makes the distinction even more obscure. 
-
-Every time someone modifies code in a separate module, I have to recompile/generate sources to fix the compilation errors. Not to mention compiling takes a lot of time as well. 
-I’m mostly accustomed to having separate repository for each service. Personally, I think it makes it more manageable. It goes hand in hand with the SOA approach. A bad commit in another service doesn’t affect you.
-
-Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google does this as well? I&#8217;m curious to know which one is more common. What are the pros/cons that have factored into choosing one over another?
-
-
-</p>
-
-
-
-
-<p>
-</p>
-
-
+        <a class="btn pull-right" href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Read on &rarr;</a>
+    </div>
 
 
         </article>
@@ -285,7 +262,8 @@ Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google d
 
 
 
-    <p>
+    <div class="article__content clearfix">
+        <p>
 As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/4772/" target="_blank">COMS W4772: Advance Machine Learning</a>, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques.  The idea was to study and compare various adaptive learning methods on different datasets and evaluate the pros and cons of each.
 </p>
 
@@ -298,33 +276,8 @@ We kept the Stochastic Gradient Descent (SGD) as the baseline and compared it wi
 
 
 
-
-<p>You can read the final report <a href="assets/AML_Project_Report.pdf" target="_blank">here</a>! 
-</p>
-
-
-
-
-<p>Also, as part of another research project, I was studying the effects of the different hyper-parameters on learning in a deep neural network. Using synthetic data, I was evaluating the role of learning rate, batch size, activation functions, hidden units, parameter initialization, learning methods in the working of a neural network. I then ran experiments on 20newsgroup data set to compare the final results as compared to SVM and Naive Bayes.</p>
-
-
-
-
-<p>A TL;DR version is as follows: 
-    <ul>
-        <li> Too high learning rate causes divergence; too low causes to learn very slowly. Try various values to see which gives you faster convergence. A better approach is to use adaptive learning (explained later).
-        <li> Too high batch size (behaves like standard gradient descent) is computationally slow as it processes many training examples for each update. Too low batch size (behaves like online learning) learns much faster but affected by noise. A moderate value (10%-30% of data size) works well. 
-        <li> Use Rectified Linear Units (ReLUs) or tanh functions.
-        <li> Increasing the hidden units let&#8217;s you learn complex functions. Increasing too much may cause over-fitting. Choose a value using a validation set. 
-        <li> Simplest approach is to initiallize randomly using a Gaussian distribution with mean 0 and standard deviation 1. 
-        <li> Use adaptive learning techniques like AdaGrad, AdaDelta, etc. to let learning rate vary per dimension. This is very important for deep neural nets since the magnitude of gradients differ a lot between different layers. Eliminates the need of a global learning rate.  
-    </ul>
-</br>
-
-The longer version can be found <a href="http://www.deepmusings.com/assets/DeepLearning_Project.pdf" target="_blank">here!</a>
-</p>
-
-
+        <a class="btn pull-right" href="/blog/2015/05/23/deep-learning/">Read on &rarr;</a>
+    </div>
 
 
         </article>
@@ -528,7 +481,7 @@ I&#8217;m sharing the list here (in no particular order) and hope you enjoy read
         </li>
         
         <li class="post">
-            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Single Repo vs Multiple Repos</a>
+            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Monolithic Repo vs Micro Repos</a>
         </li>
         
         <li class="post">

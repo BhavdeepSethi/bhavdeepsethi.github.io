@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Single Repo vs Multiple Repos - Deep Musings</title>
+        <title>Monolithic Repo vs Micro Repos - Deep Musings</title>
         <meta name="author" content="Bhavdeep Sethi">
         
         <meta name="description" content="Developer. Inquisitive. Technology enthusiast. Soccer Fanatic.">
@@ -81,7 +81,7 @@
                     <article class="article article--single">
     <header class="article__header">
     
-        <h1 class="article__title">Single Repo vs Multiple Repos</h1>
+        <h1 class="article__title">Monolithic Repo vs Micro Repos</h1>
     
 
     
@@ -106,11 +106,11 @@
         
 
             
-                <li><a class='category' href='/blog/categories/git/'>git</a></li>
-            
                 <li><a class='category' href='/blog/categories/repo/'>repo</a></li>
             
                 <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
+            
+                <li><a class='category' href='/blog/categories/vcs/'>vcs</a></li>
             
         
         </ul>
@@ -127,31 +127,40 @@
 
     <p>
 
-Recently, I experienced working with single repo which had the entire codebase. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own git repository. I guess there are pros and cons of each method. 
+Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own repository. I guess there are pros and cons of each method. 
 
-In the single repo method, 
 Some of the points in favor of the single codebase approach I’ve heard are: 
+<!--more -->
 <ul>
-    <li>
-you don’t have to worry about versioning. You end up having a single version for your product. This helps communications with QA, clients and managers. Since everyone has to pull in the same changes, everyone has access to the same thrift sources as well. 
+    <li> You don’t have to worry about versioning. You end up having a single version for your product. This helps communications with QA, clients and managers. Since everyone has to pull in the same changes, everyone has access to the same thrift sources as well. 
     <li> Increased collaboration. Since, you have access to the entire codebase, you can look/learn/contribute to the code written by other teams as well. 
     <li> Reduces code duplication. Code discovery is much easier and reduces the amount of code duplicated across teams. 
-<ul>
-
-
-
-I personally prefer working with seperate repos. It&#8217;s a lot cleaner and for me, it symobilizes true service oriented architecture. Considering most of the time I&#8217;ll be developing on my local machine, I need that enviornment to be super fast. Yet, I don&#8217;t think there is a clear winner. Having a good build tool makes the distinction even more obscure. 
-
-Every time someone modifies code in a separate module, I have to recompile/generate sources to fix the compilation errors. Not to mention compiling takes a lot of time as well. 
-I’m mostly accustomed to having separate repository for each service. Personally, I think it makes it more manageable. It goes hand in hand with the SOA approach. A bad commit in another service doesn’t affect you.
-
-Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google does this as well? I&#8217;m curious to know which one is more common. What are the pros/cons that have factored into choosing one over another?
-
-
+</ul>
 </p>
 
 
+<p>However, there are problems with this approach as well:</p>
 
+<ul>
+    <li>Every time someone modifies code in a separate module, you have to recompile/generate sources to fix the compilation errors. Not to mention compiling takes a lot of time as well. 
+    </li>
+    <li>
+    I&#8217;ve seen Intellij giving weird path errors even though everything is fine. A syncronize with re-importing the pom fixes this but, it&#8217;s still annoying.
+    </li>
+    <li>Unnecessary dependency. I&#8217;ve seen people continue using a particular framework because it&#8217;s available and the entire code base uses it. A lot of times people tend to force their solutions to the existing framework.  With Micro repos, each service can use the framework best suited for the job. 
+    </li>
+</ul>
+
+
+
+
+<p>I personally prefer working with seperate repos. It&#8217;s a lot cleaner and for me, it symobilizes true service oriented architecture.Considering most of the time I&#8217;ll be developing on my local machine, I need that enviornment to be super fast. Having a good build tool probably makes the distinction between single vs micro repos even more obscure. 
+</p>
+
+
+<p>Yet, the monolithic repo seems to be the pre-dominant approach. I believe Google and Facebook do this. But the build enviornments in these companies are quite matured as well. So, what about the startups out there? Is there a preference?</p>
+
+<p></p></p>
 
 <p>
 </p>
@@ -211,7 +220,7 @@ Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google d
         </li>
         
         <li class="post">
-            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Single Repo vs Multiple Repos</a>
+            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Monolithic Repo vs Micro Repos</a>
         </li>
         
         <li class="post">
