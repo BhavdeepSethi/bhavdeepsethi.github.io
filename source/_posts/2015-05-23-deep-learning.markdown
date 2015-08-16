@@ -13,7 +13,7 @@ As part of the final project for <a href="http://www.cs.columbia.edu/~jebara/477
 <p>
 We kept the Stochastic Gradient Descent (SGD) as the baseline and compared it with Momentum, Nestorov's Accelerated Gradient (NAG), AdaGrad, and AdaDelta on the Digits (digit image data for OCR task), 20newsgroup (document collection) and Labeled Faces  in the Wild (LFW) (face image data) datasets.
 </p>
-
+<!--more-->
 <p>You can read the final report <a href="assets/AML_Project_Report.pdf" target="_blank">here</a>! 
 </p>
 
