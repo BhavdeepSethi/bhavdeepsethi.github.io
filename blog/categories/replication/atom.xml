@@ -4,7 +4,7 @@
     <title><![CDATA[Category: replication | Deep Musings]]></title>
     <link href="http://www.deepmusings.com/blog/categories/replication/atom.xml" rel="self"/>
     <link href="http://www.deepmusings.com/"/>
-    <updated>2015-05-23T13:16:08-04:00</updated>
+    <updated>2015-08-16T01:25:53-07:00</updated>
     <id>http://www.deepmusings.com/</id>
     <author>
         <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -16,7 +16,7 @@
     <entry>
         <title type="html"><![CDATA[MySQL Partial Replication]]></title>
         <link href="http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication/"/>
-        <updated>2014-02-08T18:36:09-05:00</updated>
+        <updated>2014-02-08T15:36:09-08:00</updated>
         <id>http://www.deepmusings.com/blog/2014/02/08/mysql-partial-replication</id>
         <content type="html"><![CDATA[<p>A couple of folks have asked me to elaborate more on partial replication.<br />
 What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? </p>
@@ -84,7 +84,7 @@ Mapping this to the &#8220;show slave status&#8221; command, the only parameters
     <entry>
         <title type="html"><![CDATA[Mysql Replication from an existing slave]]></title>
         <link href="http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave/"/>
-        <updated>2014-02-01T18:59:25-05:00</updated>
+        <updated>2014-02-01T15:59:25-08:00</updated>
         <id>http://www.deepmusings.com/blog/2014/02/01/mysql-replication-from-an-existing-slave</id>
         <content type="html"><![CDATA[<p>So you want to add another slave to an existing mysql replication environment? </p>
 

@@ -85,6 +85,160 @@
             <header class="article__header">
     
         <h1 class="h2 article__title">
+            <a href="/blog/2015/08/16/apache-spark-can-it-be-lupus/">Apache Spark - Can it be lupus?</a>
+        </h1>
+    
+
+    
+        <div class="article__meta clearfix">
+            
+
+
+
+
+
+
+    <time class="article__date pull-left" datetime="2015-08-16T00:50:31-07:00" pubdate><i class="fa fa-calendar"></i> Aug 16th, 2015</time>
+
+
+
+
+            
+
+    <div class="article__tags pull-left">
+        <i class="fa fa-tags"></i>
+        <ul class="unstyled">
+        
+            
+                <li><a class='category' href='/blog/categories/bigdata/'>bigdata</a></li>
+            
+                <li><a class='category' href='/blog/categories/spark/'>spark</a></li>
+            
+                <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
+            
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+    
+</header>
+
+
+
+
+    <div class="article__content clearfix">
+        <p>
+Hmm&#8230;so you&#8217;re trying to diagnose problems in your Spark Job and can&#8217;t seem to make progress? I&#8217;ve been there. 
+Working with Spark is similar to working with a Machine Learning algorithm with respect to the number of (hyper) parameters. 
+Tuning them properly can be really hard initially. But, if you understand the semantics behind each of them, use it properly, you&#8217;ll see it&#8217;s true potential. I can&#8217;t stress on how much of an improvement it is over the standard Map Reduce paradigm.</p>
+
+
+<p><br />
+I&rsquo;ve played with Spark a lot over the last month. Here are some of the things I&rsquo;ve learned that may help you cure your ailing Spark Job.
+<br /></p>
+
+
+        <a class="btn pull-right" href="/blog/2015/08/16/apache-spark-can-it-be-lupus/">Read on &rarr;</a>
+    </div>
+
+
+        </article>
+        <hr>
+    
+        
+        <article class="article article--index">
+            <header class="article__header">
+    
+        <h1 class="h2 article__title">
+            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Single Repo vs Multiple Repos</a>
+        </h1>
+    
+
+    
+        <div class="article__meta clearfix">
+            
+
+
+
+
+
+
+    <time class="article__date pull-left" datetime="2015-06-06T22:21:51-07:00" pubdate><i class="fa fa-calendar"></i> Jun 6th, 2015</time>
+
+
+
+
+            
+
+    <div class="article__tags pull-left">
+        <i class="fa fa-tags"></i>
+        <ul class="unstyled">
+        
+            
+                <li><a class='category' href='/blog/categories/git/'>git</a></li>
+            
+                <li><a class='category' href='/blog/categories/repo/'>repo</a></li>
+            
+                <li><a class='category' href='/blog/categories/tech/'>tech</a></li>
+            
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+    
+</header>
+
+
+
+
+    <p>
+
+Recently, I experienced working with single repo which had the entire codebase. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own git repository. I guess there are pros and cons of each method. 
+
+In the single repo method, 
+Some of the points in favor of the single codebase approach I’ve heard are: 
+<ul>
+    <li>
+you don’t have to worry about versioning. You end up having a single version for your product. This helps communications with QA, clients and managers. Since everyone has to pull in the same changes, everyone has access to the same thrift sources as well. 
+    <li> Increased collaboration. Since, you have access to the entire codebase, you can look/learn/contribute to the code written by other teams as well. 
+    <li> Reduces code duplication. Code discovery is much easier and reduces the amount of code duplicated across teams. 
+<ul>
+
+
+
+I personally prefer working with seperate repos. It&#8217;s a lot cleaner and for me, it symobilizes true service oriented architecture. Considering most of the time I&#8217;ll be developing on my local machine, I need that enviornment to be super fast. Yet, I don&#8217;t think there is a clear winner. Having a good build tool makes the distinction even more obscure. 
+
+Every time someone modifies code in a separate module, I have to recompile/generate sources to fix the compilation errors. Not to mention compiling takes a lot of time as well. 
+I’m mostly accustomed to having separate repository for each service. Personally, I think it makes it more manageable. It goes hand in hand with the SOA approach. A bad commit in another service doesn’t affect you.
+
+Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google does this as well? I&#8217;m curious to know which one is more common. What are the pros/cons that have factored into choosing one over another?
+
+
+</p>
+
+
+
+
+<p>
+</p>
+
+
+
+
+        </article>
+        <hr>
+    
+        
+        <article class="article article--index">
+            <header class="article__header">
+    
+        <h1 class="h2 article__title">
             <a href="/blog/2015/05/23/deep-learning/">Deep Learning</a>
         </h1>
     
@@ -98,7 +252,7 @@
 
 
 
-    <time class="article__date pull-left" datetime="2015-05-23T12:25:57-04:00" pubdate><i class="fa fa-calendar"></i> May 23rd, 2015</time>
+    <time class="article__date pull-left" datetime="2015-05-23T09:25:57-07:00" pubdate><i class="fa fa-calendar"></i> May 23rd, 2015</time>
 
 
 
@@ -194,7 +348,7 @@ The longer version can be found <a href="http://www.deepmusings.com/assets/DeepL
 
 
 
-    <time class="article__date pull-left" datetime="2015-05-10T20:05:12-04:00" pubdate><i class="fa fa-calendar"></i> May 10th, 2015</time>
+    <time class="article__date pull-left" datetime="2015-05-10T17:05:12-07:00" pubdate><i class="fa fa-calendar"></i> May 10th, 2015</time>
 
 
 
@@ -267,7 +421,7 @@ Me: Um...that's a good question.
 
 
 
-    <time class="article__date pull-left" datetime="2015-05-03T11:13:07-04:00" pubdate><i class="fa fa-calendar"></i> May 3rd, 2015</time>
+    <time class="article__date pull-left" datetime="2015-05-03T08:13:07-07:00" pubdate><i class="fa fa-calendar"></i> May 3rd, 2015</time>
 
 
 
@@ -323,142 +477,6 @@ I&#8217;m sharing the list here (in no particular order) and hope you enjoy read
         </article>
         <hr>
     
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2015/04/24/my-personal-iron-blogger/">My Personal Iron Blogger</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
-
-
-
-
-
-
-    <time class="article__date pull-left" datetime="2015-04-24T16:28:52-04:00" pubdate><i class="fa fa-calendar"></i> Apr 24th, 2015</time>
-
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/blog/'>blog</a></li>
-            
-                <li><a class='category' href='/blog/categories/personal/'>personal</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
-
-
-
-
-    <p>
-I noticed one of my <a href="http://www.sheki.in/">friends</a> had joined <a href="http://iron-blogger-sf.com/the-rules/" >Iron blogger</a>. The idea is that you write a blog post every week. If you miss a week, you add $5 to a common pool. Even though he has been slacking for the past few weeks, I still think it&#8217;s a pretty cool way to keep you motivated. I tried looking for the NY chapter, couldn&#8217;t find it and then got busy with assignments. </p>
-
-
-
-
-<p>
-Few days back, during one of the random tweet session with <a href="https://twitter.com/sushibar_92" >Surashree</a> (let&#8217;s stalk her together) , she and I decided that we&#8217;re gonna prod each other to come up with a new post every week. So, now I have my own personal Iron Blogger. Heh. How about that! I think this is better than the original group thingie because we can actually harass each other if we don&#8217;t follow this dedicatedly. The downside is you can expect lots of spam from of us henceforth. ;)
-</p>
-
-
-<p>
-Hmm&#8230;still need to come up with some sort of penalty for missing a post though.  
-</p>
-
-
-
-
-<p>
-<i>P.S. Surashree, does this post count? :p</i>
-</p>
-
-
-
-
-        </article>
-        <hr>
-    
-        
-        <article class="article article--index">
-            <header class="article__header">
-    
-        <h1 class="h2 article__title">
-            <a href="/blog/2015/03/16/tryst-with-destiny/">Tryst With Destiny</a>
-        </h1>
-    
-
-    
-        <div class="article__meta clearfix">
-            
-
-
-
-
-
-
-    <time class="article__date pull-left" datetime="2015-03-16T23:51:48-04:00" pubdate><i class="fa fa-calendar"></i> Mar 16th, 2015</time>
-
-
-
-
-            
-
-    <div class="article__tags pull-left">
-        <i class="fa fa-tags"></i>
-        <ul class="unstyled">
-        
-            
-                <li><a class='category' href='/blog/categories/blog/'>blog</a></li>
-            
-                <li><a class='category' href='/blog/categories/personal/'>personal</a></li>
-            
-            
-        </ul>
-    </div>
-
-
-            
-        </div>
-    
-</header>
-
-
-
-
-    <div class="article__content clearfix">
-        <p>Do you believe in destiny? Do you believe that things that are meant to happen, will happen, regardless of what you do? Does fate decide the course of your life Or are you responsible for your future and there is nothing called as luck? Personally, I&#8217;m not sure what to think. I do know that the last four years have completely changed my life. And thinking about it, all of this came down to a single decision, sometime in April 2011. </p>
-
-
-
-
-
-        <a class="btn pull-right" href="/blog/2015/03/16/tryst-with-destiny/">Read on &rarr;</a>
-    </div>
-
-
-        </article>
-        <hr>
-    
 
     <div class="pagination">
     
@@ -506,6 +524,14 @@ Hmm&#8230;still need to come up with some sort of penalty for missing a post tho
     <ul class="divided">
         
         <li class="post">
+            <a href="/blog/2015/08/16/apache-spark-can-it-be-lupus/">Apache Spark - Can it be lupus?</a>
+        </li>
+        
+        <li class="post">
+            <a href="/blog/2015/06/06/single-repo-vs-multiple-repos/">Single Repo vs Multiple Repos</a>
+        </li>
+        
+        <li class="post">
             <a href="/blog/2015/05/23/deep-learning/">Deep Learning</a>
         </li>
         
@@ -515,14 +541,6 @@ Hmm&#8230;still need to come up with some sort of penalty for missing a post tho
         
         <li class="post">
             <a href="/blog/2015/05/03/interesting-papers-from-cloud-and-big-data/">Interesting Papers from Cloud & Big Data</a>
-        </li>
-        
-        <li class="post">
-            <a href="/blog/2015/04/24/my-personal-iron-blogger/">My Personal Iron Blogger</a>
-        </li>
-        
-        <li class="post">
-            <a href="/blog/2015/03/16/tryst-with-destiny/">Tryst With Destiny</a>
         </li>
         
     </ul>

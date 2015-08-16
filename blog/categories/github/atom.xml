@@ -4,7 +4,7 @@
     <title><![CDATA[Category: github | Deep Musings]]></title>
     <link href="http://www.deepmusings.com/blog/categories/github/atom.xml" rel="self"/>
     <link href="http://www.deepmusings.com/"/>
-    <updated>2015-05-23T13:16:08-04:00</updated>
+    <updated>2015-08-16T01:25:53-07:00</updated>
     <id>http://www.deepmusings.com/</id>
     <author>
         <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -16,7 +16,7 @@
     <entry>
         <title type="html"><![CDATA[Moving from WordPress to Github]]></title>
         <link href="http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github/"/>
-        <updated>2014-12-11T21:03:59-05:00</updated>
+        <updated>2014-12-11T18:03:59-08:00</updated>
         <id>http://www.deepmusings.com/blog/2014/12/11/moving-from-wordpress-to-github</id>
         <content type="html"><![CDATA[<p><p>
 So&hellip;the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh&hellip;yeah, I know.:/</p>
@@ -48,7 +48,7 @@ I could go on and on&hellip;but you get the picture. I am so glad I moved to thi
     <entry>
         <title type="html"><![CDATA[Serving static content with Dropwizard]]></title>
         <link href="http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard/"/>
-        <updated>2014-02-13T19:22:37-05:00</updated>
+        <updated>2014-02-13T16:22:37-08:00</updated>
         <id>http://www.deepmusings.com/blog/2014/02/13/serving-static-content-with-dropwizard</id>
         <content type="html"><![CDATA[<p>Dropwizard, in its own words is a &#8220;Java framework for developing ops-friendly, high-performance, RESTful web services&#8221;.</p>
 

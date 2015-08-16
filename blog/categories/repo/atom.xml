@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title><![CDATA[Category: repo | Deep Musings]]></title>
+    <link href="http://www.deepmusings.com/blog/categories/repo/atom.xml" rel="self"/>
+    <link href="http://www.deepmusings.com/"/>
+    <updated>2015-08-16T01:25:53-07:00</updated>
+    <id>http://www.deepmusings.com/</id>
+    <author>
+        <name><![CDATA[Bhavdeep Sethi]]></name>
+        <email><![CDATA[bhavdeep_sethi@yahoo.in]]></email>
+      </author>
+    <generator uri="http://octopress.org/">Octopress</generator>
+
+    
+    <entry>
+        <title type="html"><![CDATA[Single Repo vs Multiple Repos]]></title>
+        <link href="http://www.deepmusings.com/blog/2015/06/06/single-repo-vs-multiple-repos/"/>
+        <updated>2015-06-06T22:21:51-07:00</updated>
+        <id>http://www.deepmusings.com/blog/2015/06/06/single-repo-vs-multiple-repos</id>
+        <content type="html"><![CDATA[<p>
+
+Recently, I experienced working with single repo which had the entire codebase. It was basically a heirachial maven project with each service being a subproject/module. Prior to this, I&#8217;ve always worked in an environment where each service had it&#8217;s own git repository. I guess there are pros and cons of each method. 
+
+In the single repo method, 
+Some of the points in favor of the single codebase approach I’ve heard are: 
+<ul>
+    <li>
+you don’t have to worry about versioning. You end up having a single version for your product. This helps communications with QA, clients and managers. Since everyone has to pull in the same changes, everyone has access to the same thrift sources as well. 
+    <li> Increased collaboration. Since, you have access to the entire codebase, you can look/learn/contribute to the code written by other teams as well. 
+    <li> Reduces code duplication. Code discovery is much easier and reduces the amount of code duplicated across teams. 
+<ul>
+
+
+
+I personally prefer working with seperate repos. It&#8217;s a lot cleaner and for me, it symobilizes true service oriented architecture. Considering most of the time I&#8217;ll be developing on my local machine, I need that enviornment to be super fast. Yet, I don&#8217;t think there is a clear winner. Having a good build tool makes the distinction even more obscure. 
+
+Every time someone modifies code in a separate module, I have to recompile/generate sources to fix the compilation errors. Not to mention compiling takes a lot of time as well. 
+I’m mostly accustomed to having separate repository for each service. Personally, I think it makes it more manageable. It goes hand in hand with the SOA approach. A bad commit in another service doesn’t affect you.
+
+Yet, I’ve seen the single codebase method in bunch of orgs. I believe Google does this as well? I&#8217;m curious to know which one is more common. What are the pros/cons that have factored into choosing one over another?
+
+
+</p>
+
+
+
+
+<p>
+</p>
+
+]]></content>
+    </entry>
+    
+</feed>

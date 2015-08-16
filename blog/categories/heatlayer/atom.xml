@@ -4,7 +4,7 @@
     <title><![CDATA[Category: heatlayer | Deep Musings]]></title>
     <link href="http://www.deepmusings.com/blog/categories/heatlayer/atom.xml" rel="self"/>
     <link href="http://www.deepmusings.com/"/>
-    <updated>2015-05-23T13:16:08-04:00</updated>
+    <updated>2015-08-16T01:25:53-07:00</updated>
     <id>http://www.deepmusings.com/</id>
     <author>
         <name><![CDATA[Bhavdeep Sethi]]></name>
@@ -16,7 +16,7 @@
     <entry>
         <title type="html"><![CDATA[Using Multiple Heat Layers with Google Maps]]></title>
         <link href="http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps/"/>
-        <updated>2015-01-09T21:03:17-05:00</updated>
+        <updated>2015-01-09T18:03:17-08:00</updated>
         <id>http://www.deepmusings.com/blog/2015/01/09/using-multiple-heat-layers-with-google-maps</id>
         <content type="html"><![CDATA[<p>For one of the assignments in Cloud &amp; Big Data course at Columbia University, we had to display a Heat Map Layer showing positive and negative tweets from Twitter.  </p>
 
