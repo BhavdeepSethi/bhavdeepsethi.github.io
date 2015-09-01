@@ -59,9 +59,13 @@ When doing operations like joins, intersection, cartesian, etc. consider partiti
 <p>Broadcasting data can make your jobs really really fast. It obviously helps knowing what data size you're dealing with. Assume you're taking a cartesian between two RDDS, one of size 300k, other 100k. The resultant RDD would be 90 x 10<sup>9</sup>. That's 90 billion pairs. The network shuffle required here will most likely kill your Spark job. However, if you broadcast the 100K RDD, creating the cartesian takes less than 5 minutes as it involves a simple flatMap operation over each element in it's own partition. </p>
 <br />
 <hr />
-<h3>Prefer Enums, Integers over Strings</h3>
-<p>Prefer using Enums, Integers over Strings and large objects since it affects serialization/shuffle times. If you need to use a large object simply as a key, or in cases where your algorithm demands integers, we can use zipWithIndex to create a object -> integer (with the reverse mapping) RDD and cache it. If it's small enough, just create a BiMap and broadcast it. </p>
-
+<h3>Prefer Integers over Strings</h3>
+<p>Prefer using Integers over Strings and large objects since it affects serialization/shuffle times. If you need to use a large object simply as a key, or in cases where your algorithm demands integers, we can use zipWithIndex to create a object -> integer (with the reverse mapping) RDD and cache it. If it's small enough, just create a BiMap and broadcast it. </p>
+<br />
+<hr />
+<h3>Be Careful with Enums!</h3>
+When you use transformations like reduceByKey,countByKey,etc. the internal implementation of Spark uses hashCode to do the calcuations. Now, 
+Java Enums do not have consistent hash code across different VMs. Now, since the enum keys will be distributed across different executors, even same keys may have different hash keys! This will lead to unexpected results. If you collect this result, the keys will be sent to the driver, and the now the keys which had different hashcodes will get a consistent hash and will override each other. A simple way to avoid this is using the name/toString method for the keys.
 <p>
 Spark is really really powerful. Use it properly, and you can solve most of your problems. 
 Remember, it's never lupus! 
