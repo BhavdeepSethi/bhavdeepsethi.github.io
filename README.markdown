@@ -1,4 +1,4 @@
 Personal Blog
 ================
 
-Personal blog to rant about random stuff.
+Personal blog to talk about random stuff.
