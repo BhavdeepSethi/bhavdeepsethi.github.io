@@ -2,8 +2,6 @@
 layout: single
 title: "Apache Spark - Can it be lupus?"
 date: 2015-08-16 00:50:31 -0700
-#date_formatted: Aug 16, 2015
-#last_modified_at: 2016-03-09T16:20:02-05:00
 comments: false
 tags:
   - engineering
