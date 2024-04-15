@@ -1,0 +1,663 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>MySQL Partial Replication - Deep Musings</title>
+<meta name="description" content="A couple of folks have asked me to elaborate more on partial replication. What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication?  Here is a follow up post to answer these and other such questions.  -What is Partial Replication? Partial replication is when your slave is replicating only certain db or tables from the master.  -What is the use of partial replication?    You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you’re low on space, it makes sense replicating only the desired tables. There might be other reasons and this really depends on the application consuming the data. For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources. To solve this problem, we’re using MariaDB 10.0′s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting. -How do I do it?  There are multiple ways to do this. Here is a good post covering some of the ways: http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/ - Can you add/remove tables/db to existing replication? Yes! Follow the following steps: 1) Run stop slave on the slave where you want to add the tables/db. Let&#39;s call this target slave. 2) Using method #3 from this post, take the dump of the required data. 3) Using the replication parameters captured in step 2, use the following command to update the target slave:   START SLAVE UNTIL MASTER_LOG_FILE=&#39;&lt;log_file&gt;&#39;, MASTER_LOG_POS=&lt;log_position&gt;;   The above command starts replication till the &#39;log_position&#39; and then stops the slave itself. 4) Now, load the dumped data on the target slave. 5) If you&#39;re replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave. 6) Run start slave on the target slave and watch the new tables getting the new data! :)  - Is it safe? Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication. Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you&#39;re using statement based replication.  - If I am using slave status to find the replication parameters, then which slave parameters should I consider? For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave. The show slave status command has three log files and there might be confusion as to which log file to use. If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread. Mapping this to the &quot;show slave status&quot; command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos.  Hope this helps! If you have any further questions on MySQL partial replication, do let me know.">
+
+
+  <meta name="author" content="Bhavdeep Sethi">
+  
+  <meta property="article:author" content="Bhavdeep Sethi">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Deep Musings">
+<meta property="og:title" content="MySQL Partial Replication">
+<meta property="og:url" content="http://localhost:4000/2014/02/08/mysql-partial-replication.html">
+
+
+  <meta property="og:description" content="A couple of folks have asked me to elaborate more on partial replication. What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication?  Here is a follow up post to answer these and other such questions.  -What is Partial Replication? Partial replication is when your slave is replicating only certain db or tables from the master.  -What is the use of partial replication?    You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you’re low on space, it makes sense replicating only the desired tables. There might be other reasons and this really depends on the application consuming the data. For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources. To solve this problem, we’re using MariaDB 10.0′s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting. -How do I do it?  There are multiple ways to do this. Here is a good post covering some of the ways: http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/ - Can you add/remove tables/db to existing replication? Yes! Follow the following steps: 1) Run stop slave on the slave where you want to add the tables/db. Let&#39;s call this target slave. 2) Using method #3 from this post, take the dump of the required data. 3) Using the replication parameters captured in step 2, use the following command to update the target slave:   START SLAVE UNTIL MASTER_LOG_FILE=&#39;&lt;log_file&gt;&#39;, MASTER_LOG_POS=&lt;log_position&gt;;   The above command starts replication till the &#39;log_position&#39; and then stops the slave itself. 4) Now, load the dumped data on the target slave. 5) If you&#39;re replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave. 6) Run start slave on the target slave and watch the new tables getting the new data! :)  - Is it safe? Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication. Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you&#39;re using statement based replication.  - If I am using slave status to find the replication parameters, then which slave parameters should I consider? For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave. The show slave status command has three log files and there might be confusion as to which log file to use. If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread. Mapping this to the &quot;show slave status&quot; command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos.  Hope this helps! If you have any further questions on MySQL partial replication, do let me know.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2014-02-08T15:36:09-08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/2014/02/08/mysql-partial-replication.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Bhavdeep Sethi",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Deep Musings Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Deep Musings
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/precious">My Precious</a>
+            </li><li class="masthead__menu-item">
+              <a href="/quotes">I Quote You</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/BhavdeepSethiResume.pdf">Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Bhavdeep Sethi" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Bhavdeep Sethi</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>The world forgetting, by the world forgot</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco, USA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/bhavdeepsethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Personal</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/frec-bhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Work</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sethibhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://facebook.com/bhavdeep.sethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="MySQL Partial Replication">
+    <meta itemprop="description" content="A couple of folks have asked me to elaborate more on partial replication.What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? Here is a follow up post to answer these and other such questions. -What is Partial Replication?Partial replication is when your slave is replicating only certain db or tables from the master. -What is the use of partial replication? You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you’re low on space, it makes sense replicating only the desired tables.There might be other reasons and this really depends on the application consuming the data.For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.To solve this problem, we’re using MariaDB 10.0′s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting.-How do I do it?There are multiple ways to do this. Here is a good post covering some of the ways:http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/- Can you add/remove tables/db to existing replication?Yes! Follow the following steps:1) Run stop slave on the slave where you want to add the tables/db. Let&#39;s call this target slave.2) Using method #3 from this post, take the dump of the required data.3) Using the replication parameters captured in step 2, use the following command to update the target slave:START SLAVE UNTIL MASTER_LOG_FILE=&#39;&lt;log_file&gt;&#39;, MASTER_LOG_POS=&lt;log_position&gt;;The above command starts replication till the &#39;log_position&#39; and then stops the slave itself.4) Now, load the dumped data on the target slave.5) If you&#39;re replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave.6) Run start slave on the target slave and watch the new tables getting the new data! :) - Is it safe?Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication.Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you&#39;re using statement based replication. - If I am using slave status to find the replication parameters, then which slave parameters should I consider?For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave.The show slave status command has three log files and there might be confusion as to which log file to use.If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread.Mapping this to the &quot;show slave status&quot; command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos. Hope this helps! If you have any further questions on MySQL partial replication, do let me know.">
+    <meta itemprop="datePublished" content="2014-02-08T15:36:09-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">MySQL Partial Replication
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2014-02-08T15:36:09-08:00">February 8, 2014</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>A couple of folks have asked me to elaborate more on partial replication.<br />
+What is the use of replicating only certain tables? Can you add/remove tables/db to the existing replication? </p>
+<p>Here is a follow up post to answer these and other such questions. </p>
+<p>-What is Partial Replication?<br />
+Partial replication is when your slave is replicating only certain db or tables from the master. </p>
+<p>-What is the use of partial replication? </p>
+<p><br />
+<!--more-->
+You might have cases where you might be storing a lot of data in your master instance, but only want to consume certain tables from the slave. If you’re low on space, it makes sense replicating only the desired tables.<br />
+There might be other reasons and this really depends on the application consuming the data.<br />
+For instance, in Flipkart, most teams host their own instance of mysql on a different box. Online Marketing might want to consume some of this data for targeting purposes. For eg., you may want to send emails to all users who have bought books/mobiles and who reside in particular pincodes. Order related data is stored in the Order Management System (OMS), while user related data is stored in User Service. Using the API for bulk and complex queries can be inefficient. This is an example where you want to join two different sources. There are cases where we might want to make joins across 7-8 sources.<br />
+To solve this problem, we’re using MariaDB 10.0′s multi source replication. Each source maintains a lot of tables that is internal to their system. The marketing mysql slave instance selectively replicates from these sources so that it can consume relevant data for targeting.</p>
+<p>-How do I do it?<br />
+<span id="more-204"></span><br />
+There are multiple ways to do this. Here is a good post covering some of the ways:<br />
+<a href="http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/" title="Partial Replication" target="_blank">http://www.mysqlperformanceblog.com/2007/11/07/filtered-mysql-replication/</a></p>
+<p>- Can you add/remove tables/db to existing replication?<br />
+Yes! Follow the following steps:<br />
+1) Run <code language="sql">stop slave</code> on the slave where you want to add the tables/db. Let's call this target slave.<br />
+2) Using method #3 from this post, take the dump of the required data.<br />
+3) Using the replication parameters captured in step 2, use the following command to update the target slave:<br />
+<br />
+<code language="sql">
+START SLAVE UNTIL MASTER_LOG_FILE='&lt;log_file&gt;', MASTER_LOG_POS=&lt;log_position&gt;;
+</code>
+<br />
+The above command starts replication till the 'log_position' and then stops the slave itself.<br />
+4) Now, load the dumped data on the target slave.<br />
+5) If you're replicating using replicate-do-db or replicate-do-table, add the new tables to the conf file and restart the target slave.<br />
+6) Run <code language="sql">start slave</code> on the target slave and watch the new tables getting the new data! :) </p>
+<p>- Is it safe?<br />
+Well, yes and no. It works just like normal replication so yes, it is safe. No, in terms of the slight increase in chance of breaking replication.<br />
+Say you are replicating only table tA, tB and tC from DB dbA. Now, if a DML command is run which uses cross join of dbA and dbB to update data from table tA, then yes, replication may break if you're using statement based replication. </p>
+<p>- If I am using slave status to find the replication parameters, then which slave parameters should I consider?<br />
+For replication to start, the mysql instance needs the name of the log file it needs to read, and the position at which it should start reading from this file. For a slave, there is a difference between the IO thread reading the binlogs and the SQL thread executing the commands on the existing slave.<br />
+The <code language="sql">show slave status</code> command has three log files and there might be confusion as to which log file to use.<br />
+If you are taking the dump from an existing slave, the data that the current slave holds depends on the position of the SQL thread running and not the IO thread.<br />
+Mapping this to the "show slave status" command, the only parameters you should consider are Relay_Master_Log_File and Exec_Master_Log_Pos. </p>
+<p>Hope this helps! If you have any further questions on MySQL partial replication, do let me know.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a><span class="sep">, </span>
+    
+      <a href="/tags/#engineering" class="page__taxonomy-item" rel="tag">engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2014-02-08T15:36:09-08:00">February 8, 2014</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=MySQL+Partial+Replication%20http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F08%2Fmysql-partial-replication.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F08%2Fmysql-partial-replication.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F08%2Fmysql-partial-replication.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2014/02/01/mysql-replication-from-an-existing-slave.html" class="pagination--pager" title="Mysql Replication from an existing slave
+">Previous</a>
+    
+    
+      <a href="/2014/02/13/serving-static-content-with-dropwizard.html" class="pagination--pager" title="Serving static content with Dropwizard
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/08/16/apache-spark-can-it-be-lupus.html" rel="permalink">Apache Spark - Can it be lupus?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-08-16T00:50:31-07:00">August 16, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Hmm...so you're trying to diagnose problems in your Spark Job and can't seem to make progress? I've been there.
+Working with Spark is similar to working wit...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/06/06/single-repo-vs-multiple-repos.html" rel="permalink">Monolithic Repo vs Micro Repos
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-06-06T22:21:51-07:00">June 6, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a hierarchial maven project with each service...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-23T09:25:57-07:00">May 23, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+As part of the final project for COMS W4772: Advance Machine Learning, a course I took at Columbia University during Spring 2015, my friend Rhea and I were ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/personal/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-10T17:05:12-07:00">May 10, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+The first career fair I ever attended in Columbia was somewhere around October 17, 2015. It was an interesting experience to say the least. There was so muc...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Bhavdeep Sethi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

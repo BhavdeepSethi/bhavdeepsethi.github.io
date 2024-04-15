@@ -1,0 +1,700 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Apache Spark - Can it be lupus? - Deep Musings</title>
+<meta name="description" content="Hmm...so you&#39;re trying to diagnose problems in your Spark Job and can&#39;t seem to make progress? I&#39;ve been there. Working with Spark is similar to working with a Machine Learning algorithm with respect to the number of (hyper) parameters. Tuning them properly can be really hard initially. But, if you understand the semantics behind each of them, use it properly, you&#39;ll see it&#39;s true potential. I can&#39;t stress on how much of an improvement it is over the standard Map Reduce paradigm.">
+
+
+  <meta name="author" content="Bhavdeep Sethi">
+  
+  <meta property="article:author" content="Bhavdeep Sethi">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Deep Musings">
+<meta property="og:title" content="Apache Spark - Can it be lupus?">
+<meta property="og:url" content="http://localhost:4000/2015/08/16/apache-spark-can-it-be-lupus.html">
+
+
+  <meta property="og:description" content="Hmm...so you&#39;re trying to diagnose problems in your Spark Job and can&#39;t seem to make progress? I&#39;ve been there. Working with Spark is similar to working with a Machine Learning algorithm with respect to the number of (hyper) parameters. Tuning them properly can be really hard initially. But, if you understand the semantics behind each of them, use it properly, you&#39;ll see it&#39;s true potential. I can&#39;t stress on how much of an improvement it is over the standard Map Reduce paradigm.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2015-08-16T00:50:31-07:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/2015/08/16/apache-spark-can-it-be-lupus.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Bhavdeep Sethi",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Deep Musings Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Deep Musings
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/precious">My Precious</a>
+            </li><li class="masthead__menu-item">
+              <a href="/quotes">I Quote You</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/BhavdeepSethiResume.pdf">Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Bhavdeep Sethi" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Bhavdeep Sethi</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>The world forgetting, by the world forgot</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco, USA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/bhavdeepsethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Personal</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/frec-bhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Work</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sethibhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://facebook.com/bhavdeep.sethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Apache Spark - Can it be lupus?">
+    <meta itemprop="description" content="Hmm...so you&#39;re trying to diagnose problems in your Spark Job and can&#39;t seem to make progress? I&#39;ve been there.Working with Spark is similar to working with a Machine Learning algorithm with respect to the number of (hyper) parameters.Tuning them properly can be really hard initially. But, if you understand the semantics behind each of them, use it properly, you&#39;ll see it&#39;s true potential. I can&#39;t stress on how much of an improvement it is over the standard Map Reduce paradigm.">
+    <meta itemprop="datePublished" content="2015-08-16T00:50:31-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Apache Spark - Can it be lupus?
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-08-16T00:50:31-07:00">August 16, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>
+Hmm...so you're trying to diagnose problems in your Spark Job and can't seem to make progress? I've been there.
+Working with Spark is similar to working with a Machine Learning algorithm with respect to the number of (hyper) parameters.
+Tuning them properly can be really hard initially. But, if you understand the semantics behind each of them, use it properly, you'll see it's true potential. I can't stress on how much of an improvement it is over the standard Map Reduce paradigm.</p>
+
+<p><br />
+I’ve played with Spark a lot over the last month. Here are some of the things I’ve learned that may help you cure your ailing Spark Job.
+<br />
+<!--more--></p>
+
+<p>Start by reading these:</p>
+
+<ul>
+  <li><a href="http://spark.apache.org/docs/latest/tuning.html" target="_blank">Tuning Spark</a> (You may want to change to the Spark Version currently deployed)</li>
+  <li><a href="http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/" target="_blank">Tune your Spark Jobs Part 1</a></li>
+  <li><a href="http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/" target="_blank">Tune your Spark Jobs Part 2</a></li>
+</ul>
+
+<p><br /></p>
+<hr />
+
+<h3>Not all Spark programs are created equal</h3>
+
+<p>Spark has a lot of parameters that you can play with. Each can have quite an impact on the running time of your spark job. The four parameters that are probably the most critical are, <code> --num-executors, --driver-memory, --executor-memory and --executor-cores</code>. Just increasing the num-executors does not mean your job will run faster. When you persist/cache any RDD, that is shared by all tasks running in an executor. So in most cases, increasing the parallelism (executor-cores) will have more effect as they can access the same cache. However, make sure you change executor-memory accordingly. The executor memory is shared among all the tasks. So if you have 16g and you can run 3 tasks in parallel, then each task will get around 5G. If you notice that only a fraction of your RDD is getting cached, you need to increase the amount of partitions it can access. Increasing the number of executors and reducing the executor-cores might help with this.</p>
+
+<p><br /></p>
+<hr />
+
+<h3> Things to be aware of when you use variables.</h3>
+<p>If you’re passing values via command line arguments to your Spark jobs, you need to be extra careful. The values that you pass are only accessible to the driver class. If you’re using Flags with default values, then the executors will receive the default values and not the ones you passed! For mandatory flags, it will just pass null. To avoid such cases, you can broadcast these flags and access them using the broadcast variables.
+<br /></p>
+<hr />
+
+<h3>Kryo. Always.</h3>
+<p>
+Always always use Kryo. You can check the difference between Kryo and Java Serialization <a href="https://github.com/eishay/jvm-serializers/wiki" target="_blank">here</a>. When caching, it will use less far less space and will still be much faster. Seriously, don't use java serialization. </p>
+<p><br /></p>
+<hr />
+
+<h3>StackOverflow problems? Cut the DAG.</h3>
+<p>If you have long DAG of RDD objects, it needs to be serialized as part of the task creation. Serializing this leads to stackoverflow error. It's generally common with algorithms where you perform iterations on the same RDD (eg. ALS). To fix these errors, you need to enable checkpointing (sparkContext.setCheckpointDir) and do a rdd.count() to cut the DAG.
+</p>
+<p><br /></p>
+<hr />
+
+<h3>Java heap space/OOM issues. </h3>
+<p>
+There are many variations of these errors. Typical ones are "Out of Java heap Space", "OOM errors". But, there are ones that are more subtle like "Failed without being ACK'd", "Futures timed out after [n seconds]".  These generally happen when the threads are busy with GC and couldn't send the heartbeat message to the driver.  A good way to debug these are by going through the GC logs. <br />
+<pre> spark.executor.extraJavaOptions=-verbose:gc -XX:+PrintGCDetails -XX:+PrintGCTimeStamps </pre>
+<br />
+You can tweak your configuration based on the behavior seen by the gc logs. If there are lot of Full GC cycles happening, then you tuning config parameters like "spark.storage.memoryFraction" may help. For the timeout errors, changing the following defaults: <pre>spark.akka.frameSize=120</pre><pre>spark.rpc.askTimeout=120</pre></p>
+<p><br /></p>
+<hr />
+
+<h3>Everyday I'm shuffling.</h3>
+<p>When doing operations like joins, intersection, cartesian, etc. consider partitioning your RDD using a Hash Partitioner. In particular, if you’re joining a large RDD with a relatively smaller one, consider partitioning the larger RDD at the outset. This will ensure that only the elements of the smaller RDD are shuffled. &lt;/p&gt;
+<br /></p>
+<hr />
+
+<h3>Broadcast it! </h3>
+<p>Broadcasting data can make your jobs really really fast. It obviously helps knowing what data size you're dealing with. Assume you're taking a cartesian between two RDDS, one of size 300k, other 100k. The resultant RDD would be 90 x 10<sup>9</sup>. That's 90 billion pairs. The network shuffle required here will most likely kill your Spark job. However, if you broadcast the 100K RDD, creating the cartesian takes less than 5 minutes as it involves a simple flatMap operation over each element in it's own partition. </p>
+<p><br /></p>
+<hr />
+
+<h3>Prefer Integers over Strings</h3>
+<p>Prefer using Integers over Strings and large objects since it affects serialization/shuffle times. If you need to use a large object simply as a key, or in cases where your algorithm demands integers, we can use zipWithIndex to create a object -&gt; integer (with the reverse mapping) RDD and cache it. If it's small enough, just create a BiMap and broadcast it. </p>
+<p><br /></p>
+<hr />
+
+<h3>Be Careful with Enums!</h3>
+<p>When you use transformations like reduceByKey,countByKey,etc. the internal implementation of Spark uses hashCode to do the calculations. Now,
+Java Enums do not have consistent hash code across different VMs. Now, since the enum keys will be distributed across different executors, even same keys may have different hash keys! This will lead to unexpected results. If you collect this result, the keys will be sent to the driver, and the now the keys which had different hashcodes will get a consistent hash and will override each other. A simple way to avoid this is using the name/toString method for the keys.</p>
+<p>
+Spark is really really powerful. Use it properly, and you can solve most of your problems.
+Remember, it's never lupus!
+</p>
+<p><img src="/assets/images/its-not-lupus.jpg" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#big-data" class="page__taxonomy-item" rel="tag">big data</a><span class="sep">, </span>
+    
+      <a href="/tags/#engineering" class="page__taxonomy-item" rel="tag">engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-08-16T00:50:31-07:00">August 16, 2015</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Apache+Spark+-+Can+it+be+lupus%3F%20http%3A%2F%2Flocalhost%3A4000%2F2015%2F08%2F16%2Fapache-spark-can-it-be-lupus.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2015%2F08%2F16%2Fapache-spark-can-it-be-lupus.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2015%2F08%2F16%2Fapache-spark-can-it-be-lupus.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2015/06/06/single-repo-vs-multiple-repos.html" class="pagination--pager" title="Monolithic Repo vs Micro Repos
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/06/06/single-repo-vs-multiple-repos.html" rel="permalink">Monolithic Repo vs Micro Repos
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-06-06T22:21:51-07:00">June 6, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a hierarchial maven project with each service...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-23T09:25:57-07:00">May 23, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+As part of the final project for COMS W4772: Advance Machine Learning, a course I took at Columbia University during Spring 2015, my friend Rhea and I were ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/personal/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-10T17:05:12-07:00">May 10, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+The first career fair I ever attended in Columbia was somewhere around October 17, 2015. It was an interesting experience to say the least. There was so muc...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/05/03/interesting-papers-from-cloud-and-big-data.html" rel="permalink">Interesting Papers from Cloud &amp; Big Data
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-03T08:13:07-07:00">May 3, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+One of courses that I took in Columbia, with a really good course content, was Cloud and Big Data.
+I took the course in Fall '14 and TA'ed it in Spring '15....</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Bhavdeep Sethi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

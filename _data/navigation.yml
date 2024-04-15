@@ -1,0 +1,16 @@
+# main links
+main:
+  - title: "Home"
+    url: /
+  - title: "Posts"
+    url: /year-archive/
+  - title: "My Precious"
+    url: /precious
+  - title: "I Quote You"
+    url: /quotes
+  - title: "Resume"
+    url: /assets/BhavdeepSethiResume.pdf
+  - title: "Projects"
+    url: /projects/
+  - title: "About"
+    url: /about/

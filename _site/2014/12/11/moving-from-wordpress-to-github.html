@@ -1,0 +1,649 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Moving from WordPress to Github - Deep Musings</title>
+<meta name="description" content="So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/">
+
+
+  <meta name="author" content="Bhavdeep Sethi">
+  
+  <meta property="article:author" content="Bhavdeep Sethi">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Deep Musings">
+<meta property="og:title" content="Moving from WordPress to Github">
+<meta property="og:url" content="http://localhost:4000/2014/12/11/moving-from-wordpress-to-github.html">
+
+
+  <meta property="og:description" content="So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2014-12-11T18:03:59-08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/2014/12/11/moving-from-wordpress-to-github.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Bhavdeep Sethi",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Deep Musings Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Deep Musings
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/precious">My Precious</a>
+            </li><li class="masthead__menu-item">
+              <a href="/quotes">I Quote You</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/BhavdeepSethiResume.pdf">Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Bhavdeep Sethi" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Bhavdeep Sethi</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>The world forgetting, by the world forgot</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco, USA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/bhavdeepsethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Personal</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/frec-bhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Work</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sethibhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://facebook.com/bhavdeep.sethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Moving from WordPress to Github">
+    <meta itemprop="description" content="So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/">
+    <meta itemprop="datePublished" content="2014-12-11T18:03:59-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Moving from WordPress to Github
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2014-12-11T18:03:59-08:00">December 11, 2014</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>
+So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/
+
+<p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I'm getting into the writing mode again and not to mention that a lot has happened in the past six months...so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br />
+
+But not anymore!
+
+<!--more-->
+
+I randomly googled "<a href="http://goo.gl/02SPK4">blogging platform for coders</a>", went to the HN link from the result and read about Jekyll+Github. And I can't believe I hadn't heard about this for so long! I was aware that you could create simple pages for your projects but when I saw what I could actually do (with User and Project pages both), I regretted not looking around for more options earlier. <br />
+
+With Octopress into the picture, you do not even have to bother with the blog structure/theme. It took me about half a day to migrate the entire blog. Or whatever was left of it.
+
+<p><h3>Why GitHub User Pages are way better than WordPress for your blog?</h3>
+<ul>
+<li>The power of Github! You can add collaborators, markdowns, issue tracking, versioning...do I need to say more?
+<li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
+<li>You own the code. You decide how the code is going to be rendered. In WordPress(WP), you ended up writing articles and having no control of what is going on behind the scene. It took me three days to get a simple jQuery functionality working with WP.
+<li> You can run your blog locally. Making changes is so much faster. I can work on the blog even when I don't have an internet connection.
+<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh'ing into a webserver is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
+<li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
+&lt;/ul&gt;
+<br />
+I could go on and on...but you get the picture. I am so glad I moved to this new platform. It feels like home here. :P
+
+<p> For others, who are considering this move, I strongly encourage it! The Octopress <a href="http://octopress.org/docs/setup/">Get Started guide</a> is all you need to get rolling! You can look at <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">this Github repo</a> to go through some of the user made themes. <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/">This Github Help</a> page will give you steps for setting up a custom domain with your github page. That's it! Seriously. You're done! Hope to see you on this side.
+</p></li></li></li></li></li></li></ul></p></p></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#personal" class="page__taxonomy-item" rel="tag">personal</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2014-12-11T18:03:59-08:00">December 11, 2014</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Moving+from+WordPress+to+Github%20http%3A%2F%2Flocalhost%3A4000%2F2014%2F12%2F11%2Fmoving-from-wordpress-to-github.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2014%2F12%2F11%2Fmoving-from-wordpress-to-github.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2014%2F12%2F11%2Fmoving-from-wordpress-to-github.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2014/04/25/lets-just-live-for-today.html" class="pagination--pager" title="Let’s just live for today!
+">Previous</a>
+    
+    
+      <a href="/2015/01/09/using-multiple-heat-layers-with-google-maps.html" class="pagination--pager" title="Using Multiple Heat Layers with Google Maps
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/08/16/apache-spark-can-it-be-lupus.html" rel="permalink">Apache Spark - Can it be lupus?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-08-16T00:50:31-07:00">August 16, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Hmm...so you're trying to diagnose problems in your Spark Job and can't seem to make progress? I've been there.
+Working with Spark is similar to working wit...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/06/06/single-repo-vs-multiple-repos.html" rel="permalink">Monolithic Repo vs Micro Repos
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-06-06T22:21:51-07:00">June 6, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a hierarchial maven project with each service...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-23T09:25:57-07:00">May 23, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+As part of the final project for COMS W4772: Advance Machine Learning, a course I took at Columbia University during Spring 2015, my friend Rhea and I were ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/personal/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-10T17:05:12-07:00">May 10, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+The first career fair I ever attended in Columbia was somewhere around October 17, 2015. It was an interesting experience to say the least. There was so muc...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Bhavdeep Sethi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

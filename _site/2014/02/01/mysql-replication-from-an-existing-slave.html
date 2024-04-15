@@ -1,0 +1,663 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Mysql Replication from an existing slave - Deep Musings</title>
+<meta name="description" content="So you want to add another slave to an existing mysql replication environment?  There are multiple ways to do this.  First option, as mentioned in the mysql documentation:  Replication How to add additional slaves This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so. You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag. Plus, the whole process is not straightforward and really prone to errors.  Another option is to use lvm snapshot to take backups:     Using lvm for mysql backup and replication setup I&#39;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen.  But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance?  Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this.  There is a better way to do this. Using mysqldump (for mysql &gt;= 5.5.3):  Let us see the query to dump a single table from a single database:  mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip &gt; dump_file_name.gz">
+
+
+  <meta name="author" content="Bhavdeep Sethi">
+  
+  <meta property="article:author" content="Bhavdeep Sethi">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Deep Musings">
+<meta property="og:title" content="Mysql Replication from an existing slave">
+<meta property="og:url" content="http://localhost:4000/2014/02/01/mysql-replication-from-an-existing-slave.html">
+
+
+  <meta property="og:description" content="So you want to add another slave to an existing mysql replication environment?  There are multiple ways to do this.  First option, as mentioned in the mysql documentation:  Replication How to add additional slaves This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so. You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag. Plus, the whole process is not straightforward and really prone to errors.  Another option is to use lvm snapshot to take backups:     Using lvm for mysql backup and replication setup I&#39;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen.  But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance?  Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this.  There is a better way to do this. Using mysqldump (for mysql &gt;= 5.5.3):  Let us see the query to dump a single table from a single database:  mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip &gt; dump_file_name.gz">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2014-02-01T15:59:25-08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/2014/02/01/mysql-replication-from-an-existing-slave.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Bhavdeep Sethi",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Deep Musings Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Deep Musings
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/precious">My Precious</a>
+            </li><li class="masthead__menu-item">
+              <a href="/quotes">I Quote You</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/BhavdeepSethiResume.pdf">Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Bhavdeep Sethi" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Bhavdeep Sethi</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>The world forgetting, by the world forgot</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco, USA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://www.linkedin.com/in/bhavdeepsethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Personal</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/frec-bhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">Work</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/sethibhavdeep" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://facebook.com/bhavdeep.sethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span class="label">Facebook</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Mysql Replication from an existing slave">
+    <meta itemprop="description" content="So you want to add another slave to an existing mysql replication environment? There are multiple ways to do this. First option, as mentioned in the mysql documentation: Replication How to add additional slavesThis is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.Plus, the whole process is not straightforward and really prone to errors. Another option is to use lvm snapshot to take backups: Using lvm for mysql backup and replication setupI&#39;ve used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. There is a better way to do this.Using mysqldump (for mysql &gt;= 5.5.3): Let us see the query to dump a single table from a single database:mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip &gt; dump_file_name.gz ">
+    <meta itemprop="datePublished" content="2014-02-01T15:59:25-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Mysql Replication from an existing slave
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2014-02-01T15:59:25-08:00">February 1, 2014</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>So you want to add another slave to an existing mysql replication environment? </p>
+<p>There are multiple ways to do this. </p>
+<p><strong>First option, as mentioned in the mysql documentation: </strong></p>
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/replication-howto-additionalslaves.html" title="Replication How to add additional slaves" target="_blank">Replication How to add additional slaves</a></p>
+<p>This is the standard way most people follow. The issue with this is that you need to shutdown your mysql slave in this case. If it is the only slave present, it might not be feasible to do so.<br />
+You may use stop slave instead of a complete shutdown, but that might not be feasible as well. Your system probably cannot afford any replication lag.<br />
+Plus, the whole process is not straightforward and really prone to errors. </p>
+<p><strong>Another option is to use lvm snapshot to take backups: </strong></p>
+<p><br />
+<!--more -->
+<span id="more-187"></span><br />
+<a href="http://www.mysqlperformanceblog.com/2006/08/21/using-lvm-for-mysql-backup-and-replication-setup/" title="Using lvm for mysql backup and replication setup" target="_blank">Using lvm for mysql backup and replication setup</a></p>
+<p>I've used this multiple times and it works like a charm. It is very fast to do with almost 0 downtime/lag. Make sure you copy the data to another server using rsync in a screen. </p>
+<p>But what if you want to start partial replication? Say, you want to replicate only 2-3 tables from the entire mysql instance? </p>
+<p>Both the methods mentioned here copy the entire mysql data files (/var/lib/mysql). You can obviously do so for partial replication as well and delete the unnecessary tables, but it is a really inefficient way of doing this. </p>
+<p>There is a better way to do this.<br /><br />
+<strong>Using mysqldump (for mysql &gt;= 5.5.3): </strong></p>
+<p>Let us see the query to dump a single table from a single database:<br /><br />
+<code language="sql"><br />
+mysqldump --single-transaction --flush-logs --dump-slave=2 --max_allowed_packet=512M -u root -p database_name table_name | gzip &gt; dump_file_name.gz<br />
+</code> <br />
+<br />
+
+Let us go through the options:<br />
+&#8211;single-transaction: This basically starts the dump process under a new transaction without blocking any other applications.</p>
+
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_single-transaction" title="mysqldump: single-transaction" target="_blank">mysqldump: single-transaction</a></p>
+<p>&#8211;flush-logs: Flushes the MySQL server log files before starting the dump. </p>
+<p>Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_flush-logs" title="mysqldump: flush-logs" target="_blank">mysqldump: flush-logs</a></p>
+<p>&#8211;dump-slave: This is the heart of the query. It is used to print the binary log coordinates (file name and position) of the dumped slave's master in the dump file.<br />
+&#8211;dump-slave=1 prints the actual change master to statement in the sql dump.<br />
+Changing the value to 2 causes it to print the same but within a comment. Essentially, you can run it at your own convenience.<br />
+If you are replicating from a slave use &#8211;dump-slave. If you are running this query on the master itself, replace this with &#8211;master-data.<br />
+Read more: <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html#option_mysqldump_dump-slave " title="mysqldump: dump-slave" target="_blank">mysqldump: dump-slave</a></p>
+<p>&#8211;max_allowed_packet: The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB </p>
+<p>gzip: Compress the data while being writhed into a dump file. You will see a good 70%~80% compression rate. This helps a lot when transferring files cross DC.</p>
+<p>To run this for multiple tables use the &#8211;tables option. If you want to run it for one or more databases, use &#8211;databases option.<br />
+You can use this for full replication as well as long as you're using InnoDB tables. </p>
+<p>Basically you can use any of the <a href="http://dev.mysql.com/doc/refman/5.5/en/mysqldump.html" title="mysqldump" target="_blank">mysqldump</a> flags as per your requirement. </p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#database" class="page__taxonomy-item" rel="tag">database</a><span class="sep">, </span>
+    
+      <a href="/tags/#engineering" class="page__taxonomy-item" rel="tag">engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2014-02-01T15:59:25-08:00">February 1, 2014</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Mysql+Replication+from+an+existing+slave%20http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F01%2Fmysql-replication-from-an-existing-slave.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F01%2Fmysql-replication-from-an-existing-slave.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2014%2F02%2F01%2Fmysql-replication-from-an-existing-slave.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2014/01/12/resolutions-2014.html" class="pagination--pager" title="Resolutions 2014!
+">Previous</a>
+    
+    
+      <a href="/2014/02/08/mysql-partial-replication.html" class="pagination--pager" title="MySQL Partial Replication
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/08/16/apache-spark-can-it-be-lupus.html" rel="permalink">Apache Spark - Can it be lupus?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-08-16T00:50:31-07:00">August 16, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+Hmm...so you're trying to diagnose problems in your Spark Job and can't seem to make progress? I've been there.
+Working with Spark is similar to working wit...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2015/06/06/single-repo-vs-multiple-repos.html" rel="permalink">Monolithic Repo vs Micro Repos
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-06-06T22:21:51-07:00">June 6, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Recently, I have been working with a single repo which had the entire codebase of the company. It was basically a hierarchial maven project with each service...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-23T09:25:57-07:00">May 23, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+As part of the final project for COMS W4772: Advance Machine Learning, a course I took at Columbia University during Spring 2015, my friend Rhea and I were ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/personal/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2015-05-10T17:05:12-07:00">May 10, 2015</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+The first career fair I ever attended in Columbia was somewhere around October 17, 2015. It was an interesting experience to say the least. There was so muc...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Bhavdeep Sethi. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
