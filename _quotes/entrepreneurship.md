@@ -2,6 +2,7 @@
 title: "Entrepreneurship"
 excerpt: "Entrepreneurship is living a few years of your life like most people won’t..."
 classes: wide
+date: 2014-12-11 13:10
 ---
 
 <hr width="100%" />

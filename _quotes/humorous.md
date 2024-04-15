@@ -2,6 +2,7 @@
 title: "Humorous"
 excerpt: "Sarcasm: The ability to insult idiots without them realizing it..."
 classes: wide
+date: 2014-12-11 13:10
 ---
 
 <hr width="100%" />

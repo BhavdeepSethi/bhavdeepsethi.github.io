@@ -2,6 +2,7 @@
 title: "General"
 excerpt: "Normal is an illusion. What is normal for the spider ..."
 classes: wide
+date: 2014-12-11 13:10
 ---
 
 <hr width="100%" />

@@ -142,4 +142,10 @@ var store = [{
         "tags": [],
         "url": "/quotes/inspirational/",
         "teaser": null
+      },{
+        "title": "Newest",
+        "excerpt":"     Patience is not the ability to wait, but how you act while you’re waiting.        Hard work beats talent when talent doesn’t work hard.        Doveryai no proveryai. (Trust but verify).    ","categories": [],
+        "tags": [],
+        "url": "/quotes/newest/",
+        "teaser": null
       }]

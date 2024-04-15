@@ -2,6 +2,7 @@
 title: "Favorites"
 excerpt: "I always wonder why birds stay in the same place when they can..."
 classes: wide
+date: 2014-12-11 13:10
 ---
 
 <hr width="100%" />

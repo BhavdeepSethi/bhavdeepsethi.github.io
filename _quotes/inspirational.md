@@ -2,6 +2,7 @@
 title: "Inspirational"
 excerpt: "Ever tried. Ever failed. No matter. Try again. Fail again. Fail better..."
 classes: wide
+date: 2014-12-11 13:10
 ---
 
 <hr width="100%" />
