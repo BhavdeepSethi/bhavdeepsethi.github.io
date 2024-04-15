@@ -45,7 +45,8 @@ deploy:
   - touch .nojekyll
   - git add -A
   - 'git commit -m "Update site: `date`"'
-  - git push origin master
+  - git subtree push --prefix _site origin gh-pages
+  #- git push origin master
 
 author:
   name: "Bhavdeep Sethi"
