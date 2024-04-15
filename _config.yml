@@ -29,6 +29,8 @@ twitter_username: BhavdeepSethi
 github_username: BhavdeepSethi
 include: ["_pages"]
 
+destination: docs/
+
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin: "neon"
