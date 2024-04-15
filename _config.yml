@@ -41,12 +41,6 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-deploy:
-  - touch .nojekyll
-  - git add -A
-  - 'git commit -m "Update site: `date`"'
-  - git push origin gh-pages
-
 author:
   name: "Bhavdeep Sethi"
   avatar: "/assets/images/bio-photo.jpg"
