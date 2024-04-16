@@ -92,13 +92,13 @@ var store = [{
         "title": "My Internship Experience",
         "excerpt":"The first career fair I ever attended in Columbia was somewhere around October 17, 2015. It was an interesting experience to say the least. There was so much energy/excitement/ambitions...it was like an adrenaline rush... and of course, how can we forget the free swag. ;) The first few interview calls...","categories": ["personal"],
         "tags": [],
-        "url": "/personal/2015/05/10/my-internship-experience.html",
+        "url": "/2015/05/10/my-internship-experience.html",
         "teaser": null
       },{
         "title": "Deep Learning",
         "excerpt":"As part of the final project for COMS W4772: Advance Machine Learning, a course I took at Columbia University during Spring 2015, my friend Rhea and I were exploring various adaptive learning techniques. The idea was to study and compare various adaptive learning methods on different datasets and evaluate the...","categories": ["engineering","machine learning","columbia"],
         "tags": [],
-        "url": "/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html",
+        "url": "/2015/05/23/deep-learning.html",
         "teaser": null
       },{
         "title": "Monolithic Repo vs Micro Repos",

@@ -22,7 +22,7 @@ title: Deep Musings
 name: Bhavdeep Sethi
 #email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Personal blog for random personal thoughts
+  Personal blog for random personal thoughts by Bhavdeep Sethi
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://deepmusings.net" # the base hostname & protocol for your site
 twitter_username: BhavdeepSethi
@@ -30,10 +30,13 @@ github_username: BhavdeepSethi
 include: ["_pages"]
 
 destination: docs/
+search: true
+search_provider: algolia
 
 # Build settings
 theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: "neon"
+minimal_mistakes_skin: "dirt"
+#minimal_mistakes_skin: "neon"
 #minimal_mistakes_skin: "air"
 plugins:
   - jekyll-feed
@@ -68,7 +71,19 @@ author:
       icon: "fab fa-fw fa-facebook"
       url: "https://facebook.com/bhavdeep.sethi"
 
-paginate: 5
+# Produces a cleaner folder structure when using categories
+permalink: /:year/:month/:day/:title.html
+
+paginate_path: "/page/:num/"
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  title: ':title - page :num of :max'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
 
 category_archive:
   type: liquid
@@ -104,6 +119,45 @@ defaults:
       author_profile: true
       share: true
       show_date: false
+
+algolia:
+  application_id: C43H5CDF4X
+  index_name: personal_blog
+  search_only_api_key: 0587aeaf0e491e909b9fcee1cb023784
+  powered_by: true
+
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/BhavdeepSethi"
+
+category_archive:
+  type: jekyll-archives
+  path: /categories/
+tag_archive:
+  type: jekyll-archives
+  path: /tags/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-include-cache
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

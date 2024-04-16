@@ -132,6 +132,11 @@
               <a href="/about/">About</a>
             </li></ul>
         
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
@@ -405,11 +410,11 @@ Many people find it difficult to use this plugin because of lack of proper docum
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#dropwizard" class="page__taxonomy-item" rel="tag">dropwizard</a><span class="sep">, </span>
+      <a href="/tags/dropwizard" class="page__taxonomy-item" rel="tag">dropwizard</a><span class="sep">, </span>
     
-      <a href="/tags/#engineering" class="page__taxonomy-item" rel="tag">engineering</a><span class="sep">, </span>
+      <a href="/tags/engineering" class="page__taxonomy-item" rel="tag">engineering</a><span class="sep">, </span>
     
-      <a href="/tags/#java" class="page__taxonomy-item" rel="tag">java</a>
+      <a href="/tags/java" class="page__taxonomy-item" rel="tag">java</a>
     
     </span>
   </p>
@@ -561,7 +566,7 @@ Working with Spark is similar to working wit...</p>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/engineering/machine%20learning/columbia/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
+        <a href="/2015/05/23/deep-learning.html" rel="permalink">Deep Learning
 </a>
       
     </h2>
@@ -608,7 +613,7 @@ As part of the final project for COMS W4772: Advance Machine Learning, a course 
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/personal/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
+        <a href="/2015/05/10/my-internship-experience.html" rel="permalink">My Internship Experience
 </a>
       
     </h2>
@@ -655,6 +660,12 @@ The first career fair I ever attended in Columbia was somewhere around October 1
     </div>
 
     
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
 
     <div id="footer" class="page__footer">
       <footer>
@@ -665,6 +676,12 @@ The first career fair I ever attended in Columbia was somewhere around October 1
   <ul class="social-icons">
     
 
+    
+      
+        
+          <li><a href="https://twitter.com/BhavdeepSethi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
     
 
     
@@ -682,6 +699,67 @@ The first career fair I ever attended in Columbia was somewhere around October 1
   <script src="/assets/js/main.min.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'C43H5CDF4X',
+  apiKey: '0587aeaf0e491e909b9fcee1cb023784',
+  indexName: 'personal_blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate,
+      empty: 'No results',
+    }
+  })
+);
+
+// Starting the search only when toggle is clicked
+$(document).ready(function () {
+  $(".search__toggle").on("click", function() {
+    if(!search.started) {
+      search.start();
+    }
+  });
+});
+</script>
 
 
 
