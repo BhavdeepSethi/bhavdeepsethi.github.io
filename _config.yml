@@ -70,6 +70,13 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook"
       url: "https://facebook.com/bhavdeep.sethi"
+    - label: "Hacker News"
+      icon: "fab fa-fw fa-hacker-news"
+      url: "https://news.ycombinator.com/user?id=BhavdeepSethi"
+    - label: "GoodReads"
+      icon: "fab fa-fw fa-goodreads"
+      url: "https://goodreads.com/bhavdeepsethi"
+
 
 # Produces a cleaner folder structure when using categories
 permalink: /:year/:month/:day/:title.html
