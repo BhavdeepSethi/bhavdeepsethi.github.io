@@ -42,7 +42,7 @@ Always always use Kryo. You can check the difference between Kryo and Java Seria
 <br />
 <hr />
 <h3>StackOverflow problems? Cut the DAG.</h3>
-<p>If you have long DAG of RDD objects, it needs to be serialized as part of the task creation. Serializing this leads to stackoverflow error. It's generally common with algorithms where you perform iterations on the same RDD (eg. ALS). To fix these errors, you need to enable checkpointing (sparkContext.setCheckpointDir) and do a rdd.count() to cut the DAG.
+<p>If you have long DAG of RDD objects, it needs to be serialized as part of the task creation. Serializing this leads to stack overflow error. It's generally common with algorithms where you perform iterations on the same RDD (eg. ALS). To fix these errors, you need to enable check-pointing (sparkContext.setCheckpointDir) and do a rdd.count() to cut the DAG.
 </p>
 <br />
 <hr />
@@ -68,7 +68,7 @@ When doing operations like joins, intersection, cartesian, etc. consider partiti
 <hr />
 <h3>Be Careful with Enums!</h3>
 When you use transformations like reduceByKey,countByKey,etc. the internal implementation of Spark uses hashCode to do the calculations. Now,
-Java Enums do not have consistent hash code across different VMs. Now, since the enum keys will be distributed across different executors, even same keys may have different hash keys! This will lead to unexpected results. If you collect this result, the keys will be sent to the driver, and the now the keys which had different hashcodes will get a consistent hash and will override each other. A simple way to avoid this is using the name/toString method for the keys.
+Java Enums do not have consistent hash code across different VMs. Now, since the enum keys will be distributed across different executors, even same keys may have different hash keys! This will lead to unexpected results. If you collect this result, the keys will be sent to the driver, and the now the keys which had different hash codes will get a consistent hash and will override each other. A simple way to avoid this is using the name/toString method for the keys.
 <p>
 Spark is really really powerful. Use it properly, and you can solve most of your problems.
 Remember, it's never lupus!

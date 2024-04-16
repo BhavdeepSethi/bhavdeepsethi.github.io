@@ -9,7 +9,7 @@ tags:
 ---
 
 <p>
-So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/
+So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy web hosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/
 
 <p><em>Luckily</em>, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was able to retrieve some of the posts. I'm getting into the writing mode again and not to mention that a lot has happened in the past six months...so I decided to revive the blog. The fact that I had to get involved with WordPress and GoDaddy again had already kept me away from this task for so long. <br />
 
@@ -27,7 +27,7 @@ With Octopress into the picture, you do not even have to bother with the blog st
 <li> You can write articles using your everyday IDE! Intellij/Sublime Text FTW!
 <li>You own the code. You decide how the code is going to be rendered. In WordPress(WP), you ended up writing articles and having no control of what is going on behind the scene. It took me three days to get a simple jQuery functionality working with WP.
 <li> You can run your blog locally. Making changes is so much faster. I can work on the blog even when I don't have an internet connection.
-<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh'ing into a webserver is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
+<li> I prefer working on the command line. Period. Navigating along the blog like you would ssh'ing into a web server is so much faster than being forced to use a horrible GUI. And yes, MySQL CLI &gt;&gt;&gt; MySQL Workbench.
 <li>With your blog being hosted on Github, you treat it as an everyday project! Publishing a new post is no longer a hassle!
 </ul>
 <br />

@@ -48,7 +48,7 @@ var store = [{
         "teaser": null
       },{
         "title": "MariaDB seconds behind issue fixed",
-        "excerpt":"We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug: We had setup maria 10.0.4 for multisource replication. It was replicating from a Percona 5.5 master. When we started replication,...","categories": [],
+        "excerpt":"We (my friend Vishnu and I) had reported a bug with MariaDB 10.0.4. Just got an update that the issue is fixed now! Here are the details about the bug: We had setup maria 10.0.4 for multi-source replication. It was replicating from a Percona 5.5 master. When we started replication,...","categories": [],
         "tags": ["engineering","database","oss"],
         "url": "/2014/03/10/mariadb-seconds-behind-issue-fixed.html",
         "teaser": null
@@ -60,7 +60,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Moving from WordPress to Github",
-        "excerpt":"So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy webhosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/ Luckily, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I was...","categories": [],
+        "excerpt":"So...the look and feel of the blog changed. For the good, I hope! Basically my GoDaddy web hosting expired and they deleted all the content that was hosted on it. Uh...yeah, I know.:/ Luckily, I had enabled the SuperCache Plugin on WordPress. Along with the Backup to DropBox Plugin, I...","categories": [],
         "tags": ["personal"],
         "url": "/2014/12/11/moving-from-wordpress-to-github.html",
         "teaser": null
